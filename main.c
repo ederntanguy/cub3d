@@ -57,7 +57,7 @@ int	count_nb_chunck(char **map)
 	return (nb);
 }
 
-void	show_map(t_data	img, void *mlx, void *mlx_win, char **map)
+void	show_map(t_data	img, char **map)
 {
 	int pix_y;
 	int pix_x;
@@ -67,9 +67,6 @@ void	show_map(t_data	img, void *mlx, void *mlx_win, char **map)
 
 	y = 0;
 	chunck = 0;
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								 &img.endian);
 	while (map[y])
 	{
 		if (chunck >= count_nb_chunck(map))
@@ -77,7 +74,6 @@ void	show_map(t_data	img, void *mlx, void *mlx_win, char **map)
 		calcule_coordonate_chunck(chunck, &x, &y, map);
 		if (map[y][x] == '1')
 		{
-			printf("pos (%d; %d)\n", y, x);
 			pix_y = y * LEN_CHUNCK_MAP;
 			while (pix_y < LEN_CHUNCK_MAP + y * LEN_CHUNCK_MAP)
 			{
@@ -92,8 +88,6 @@ void	show_map(t_data	img, void *mlx, void *mlx_win, char **map)
 		}
 		chunck++;
 	}
-
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 }
 
 char	**realloc_dbchar(char **map, char *new_line)
@@ -143,7 +137,11 @@ int	main(int argc, char **argv)
 	map = parsing_map(argv[1]);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	show_map(img,mlx,mlx_win,map);
+	img.img = mlx_new_image(mlx, 1920, 1080);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+								 &img.endian);
+	show_map(img, map);
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	ft_free_dbchar_tab(map, 0);
 	mlx_loop(mlx);
 }
