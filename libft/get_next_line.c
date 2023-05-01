@@ -12,9 +12,9 @@
 
 #include "get_next_line.h"
 
-char	*putalltheline2(char *buf, ssize_t *res)
+char	*putalltheline2(char *buf, int *res)
 {
-	ssize_t	i;
+	int	i;
 	char	*line;
 
 	i = *res;
@@ -34,10 +34,10 @@ char	*putalltheline2(char *buf, ssize_t *res)
 	return (line);
 }
 
-char	*putalltheline(char *buf, ssize_t *res)
+char	*putalltheline(char *buf, int *res)
 {
-	ssize_t	i;
-	ssize_t	j;
+	int	i;
+	int	j;
 	char	*line;
 
 	i = *res;
@@ -63,7 +63,7 @@ char	*putalltheline(char *buf, ssize_t *res)
 char	*get_next_line(int fd)
 {
 	static t_all_variable	all;
-	static ssize_t			res = 0;
+	static int			res = 0;
 
 	all.line = NULL;
 	if (res > 0)
@@ -89,7 +89,7 @@ char	*get_next_line(int fd)
 	return (all.line);
 }
 
-void	toomanylines3(t_all_variable *all, ssize_t *res, char **line, int fd)
+void	toomanylines3(t_all_variable *all, int *res, char **line, int fd)
 {
 	*line = putthebuffer(all->buf, *line);
 	while (*line && !isbackslashinbuf(all->buf) && all->ret)
@@ -102,7 +102,7 @@ void	toomanylines3(t_all_variable *all, ssize_t *res, char **line, int fd)
 		*res = 1;
 }
 
-void	toomanylines2(char *buf, char **line, ssize_t *ret, int fd)
+void	toomanylines2(char *buf, char **line, int *ret, int fd)
 {
 	*ret = read(fd, buf, BUFFER_SIZE);
 	buf[*ret] = '\0';

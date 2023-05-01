@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static size_t	ft_min(size_t a, size_t b)
+static int	ft_min(int a, int b)
 {
 	if (a < b)
 		return (a);
@@ -21,10 +21,10 @@ static size_t	ft_min(size_t a, size_t b)
 		return (b);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, int start, int len)
 {
-	size_t	i;
-	size_t	endlen;
+	int	i;
+	int	endlen;
 	char	*end;
 
 	if (start >= ft_strlen(s))

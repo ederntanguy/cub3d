@@ -13,11 +13,11 @@
 //#include <stdio.h>
 #include "libft.h"
 
-static char	*toomuchline(const char *big, const char *little, size_t len)
+static char	*toomuchline(const char *big, const char *little, int len)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
+	int	i;
+	int	j;
+	int	k;
 
 	i = 0;
 	j = 0;
@@ -37,7 +37,7 @@ static char	*toomuchline(const char *big, const char *little, size_t len)
 	return (NULL);
 }
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *big, const char *little, int len)
 {
 	if (!*little)
 		return ((char *)big);

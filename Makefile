@@ -33,7 +33,7 @@ $(OBJDIR_SRCS):
 $(OBJDIR_SRCS2):
 				mkdir -p $(OBJDIR_SRCS2)
 
-${NAME}:		${OBJS} Makefile
+${NAME}:		${OBJS} Makefile cub3d.h
 				${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBS}
 
 clean:

@@ -13,9 +13,9 @@
 //#include <stdio.h>
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(const void *s, int c, int n)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (n > i)

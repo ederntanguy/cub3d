@@ -12,9 +12,9 @@
 
 #include "get_next_line.h"
 
-ssize_t	isbackslashinbuf(char *buf)
+int	isbackslashinbuf(char *buf)
 {
-	ssize_t	i;
+	int	i;
 
 	i = 0;
 	while (buf[i])
@@ -26,9 +26,9 @@ ssize_t	isbackslashinbuf(char *buf)
 	return (0);
 }
 
-ssize_t	findbackslash(char *buf, ssize_t *res)
+int	findbackslash(char *buf, int *res)
 {
-	ssize_t	i;
+	int	i;
 
 	i = 0;
 	if (res)
@@ -46,7 +46,7 @@ char	*putthebuffer(char *buf, char *line)
 {
 	int		i;
 	int		j;
-	ssize_t	k;
+	int	k;
 	char	*newline;
 
 	j = 0;
@@ -69,7 +69,7 @@ char	*putthebuffer(char *buf, char *line)
 	return (newline);
 }
 
-char	*toomanylines(char *line, ssize_t *res, ssize_t ret)
+char	*toomanylines(char *line, int *res, int ret)
 {
 	if (line && ret == 0)
 	{

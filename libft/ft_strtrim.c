@@ -14,9 +14,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static size_t	check(char *set, char carac)
+static int	check(char *set, char carac)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (set[i])
@@ -28,7 +28,7 @@ static size_t	check(char *set, char carac)
 	return (0);
 }
 
-static size_t	kvalue(size_t i)
+static int	kvalue(int i)
 {
 	if (i == 0)
 		return (0);
@@ -38,10 +38,10 @@ static size_t	kvalue(size_t i)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	size_t	m;
+	int	i;
+	int	j;
+	int	k;
+	int	m;
 	char	*new;
 
 	i = ft_strlen(s1);

@@ -26,17 +26,17 @@ typedef struct all_variable
 {
 	char		buf[BUFFER_SIZE + 1];
 	char		*line;
-	ssize_t		ret;
+	int		ret;
 }	t_all_variable;
 
-ssize_t	isbackslashinbuf(char *buf);
-ssize_t	findbackslash(char *buf, ssize_t *res);
+int		isbackslashinbuf(char *buf);
+int		findbackslash(char *buf, int *res);
 char	*putthebuffer(char *buf, char *line);
-char	*putalltheline(char *buf, ssize_t *res);
-char	*putalltheline2(char *buf, ssize_t *res);
+char	*putalltheline(char *buf, int *res);
+char	*putalltheline2(char *buf, int *res);
 char	*get_next_line(int fd);
-char	*toomanylines(char *line, ssize_t *res, ssize_t ret);
-void	toomanylines2(char *buf, char **line, ssize_t *ret, int fd);
-void	toomanylines3(t_all_variable *all, ssize_t *res, char **line, int fd);
+char	*toomanylines(char *line, int *res, int ret);
+void	toomanylines2(char *buf, char **line, int *ret, int fd);
+void	toomanylines3(t_all_variable *all, int *res, char **line, int fd);
 
 #endif
