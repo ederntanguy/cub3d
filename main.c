@@ -45,15 +45,18 @@ int	main(int argc, char **argv)
 	void	*mlx_win;
 	t_img	img;
 	char	**map;
+	t_player player;
 
 	(void) argc;
 	map = parsing_map(argv[1]);
+	player = make_player(map);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
 	show_map(img, map);
+	show_player_mini_map(img, player);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_key_hook(mlx_win, input_handling, &data);
 	ft_free_dbchar_tab(map, 0);

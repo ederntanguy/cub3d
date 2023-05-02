@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 12:46:18 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/02 12:50:08 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include "fcntl.h"
 # include <math.h>
 # include <X11/X.h>
+# include <math.h>
 
 typedef struct s_img {
 	void	*img;
@@ -58,11 +59,11 @@ typedef struct s_data
 	
 } t_data;
 
-void			calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
-int				count_nb_chunck(char **map);
-void			show_map(t_img	img, char **map);
-void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
-int				quit(void *a);
+void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
+int					count_nb_chunck(char **map);
+void				show_map(t_img	img, char **map);
+void				my_mlx_pixel_put(t_img *img, int x, int y, int color);
+int					quit(void *a);
 
 //Vector Utils
 
@@ -73,5 +74,7 @@ t_coordonate	add_vector(t_coordonate vector1, t_coordonate vector2);
 
 int				input_handling(int keycode, t_data *data);
 void			move_up(t_data	*data);
+int			show_player_mini_map(t_img img, t_player player);
+t_player	make_player(char **map);
 
 #endif
