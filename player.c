@@ -12,18 +12,36 @@
 
 #include "cub3d.h"
 
-t_player	make_player(int x, int y, char direction)
+t_player	make_player(char **map)
 {
-	t_player	player;
-	
-	player.coordonate.x = x;
-	player.coordonate.y = y;
-	if (direction == 'n')
-		player.rotation = 0;
-	if (direction == 'e')
-		player.rotation = 90;
-	if (direction == 's')
-		player.rotation = 180;
-	if (direction == 'w')
-		player.rotation = 270;
+	t_player		player;
+	t_coordonate	chunck_pos;
+	int				chunck;
+
+	chunck = 0;
+	chunck_pos.y = 0;
+	while (map[chunck_pos.y])
+	{
+		calcule_coordonate_chunck(chunck, &(chunck_pos.x), &(chunck_pos.y), map);
+		if (map[chunck_pos.y][chunck_pos.x] == 'N'
+			|| map[chunck_pos.y][chunck_pos.x] == 'S'
+			|| map[chunck_pos.y][chunck_pos.x] == 'E'
+			|| map[chunck_pos.y][chunck_pos.x] == 'W')
+		{
+			player.coordonate.x = chunck_pos.x * LEN_CHUNCK;
+			player.coordonate.y = chunck_pos.y * LEN_CHUNCK;
+			if (map[chunck_pos.y][chunck_pos.x] == 'N')
+				player.rotation = 0;
+			else if (map[chunck_pos.y][chunck_pos.x] == 'E')
+				player.rotation = 90;
+			else if (map[chunck_pos.y][chunck_pos.x] == 'S')
+				player.rotation = 180;
+			else if (map[chunck_pos.y][chunck_pos.x] == 'W')
+				player.rotation = 270;
+			return (player);
+		}
+		chunck++;
+	}
+	player.coordonate.x = 0;
+	return (player);
 }

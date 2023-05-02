@@ -27,6 +27,7 @@
 # include <stdio.h>
 # include "fcntl.h"
 # include <X11/X.h>
+# include <math.h>
 
 typedef struct s_img {
 	void	*img;
@@ -55,10 +56,12 @@ typedef struct s_data
 	
 } t_data;
 
-void	calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
-int		count_nb_chunck(char **map);
-void	show_map(t_img	img, char **map);
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-int		quit(void *a);
+void		calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
+int			count_nb_chunck(char **map);
+void		show_map(t_img	img, char **map);
+void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
+int			quit(void *a);
+int			show_player_mini_map(t_img img, t_player player);
+t_player	make_player(char **map);
 
 #endif
