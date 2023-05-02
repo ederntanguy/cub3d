@@ -6,8 +6,8 @@ t_coordonate	rotate_vector(t_coordonate vector,
 	t_coordonate	rotated;
 
 	rotated.x = (vector.x - position.x) * cos(angle)
-		- (vector.y - position.y) * sin(angle);
-	rotated.y = (vector.x - position.x) * sin(angle)
+		- (position.y - vector.y) * sin(angle);
+	rotated.y = (position.x - vector.x) * sin(angle)
 		- (vector.y - position.y) * cos(angle);
 	return (rotated);
 }

@@ -19,8 +19,6 @@ void	move_up(t_data	*data)
 	initial_vector = rotate_vector(initial_vector,
 			data->player.coordonate, data->player.rotation);
 	new_position = add_vector(initial_vector, data->player.coordonate);
-	printf("pos(%d; %d)\n", data->player.coordonate.x, data->player.coordonate.y);
 	if (check_posible_position(new_position, *data))
 		data->player.coordonate = new_position;
-	printf("pos(%d; %d)\n", new_position.x, new_position.y);
 }
