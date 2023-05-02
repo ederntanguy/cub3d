@@ -45,6 +45,7 @@ int	main(int argc, char **argv)
 {
 	t_window	window;
 	t_data		data;
+	t_all 		all;
 
 	(void) argc;
 	data = setup_data(argv);
@@ -52,8 +53,10 @@ int	main(int argc, char **argv)
 	data.map = parsing_map(argv[1]);
 	data.player = make_player(data.map);
 	show_debug_map(&data, &window);
-	ft_free_dbchar_tab(data.map, 0);
-	mlx_key_hook(window.win, input_handling, &data);
+	all.data = data;
+	all.window = window;
+//	ft_free_dbchar_tab(data.map, 0);
+	mlx_key_hook(window.win, input_handling, &all);
 	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, NULL);
 	mlx_loop(window.mlx);
 }

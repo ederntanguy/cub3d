@@ -14,11 +14,13 @@ void	move_up(t_data	*data)
 	t_coordonate	initial_vector;
 	t_coordonate	new_position;
 
-	initial_vector.x = PLAYER_SPEED;
-	initial_vector.y = 0;
+	initial_vector.x = 0;
+	initial_vector.y = -PLAYER_SPEED;
 	initial_vector = rotate_vector(initial_vector,
 			data->player.coordonate, data->player.rotation);
 	new_position = add_vector(initial_vector, data->player.coordonate);
+	printf("pos(%d; %d)\n", data->player.coordonate.x, data->player.coordonate.y);
 	if (check_posible_position(new_position, *data))
 		data->player.coordonate = new_position;
+	printf("pos(%d; %d)\n", new_position.x, new_position.y);
 }

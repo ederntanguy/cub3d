@@ -20,7 +20,7 @@
 # define LEN_CHUNCK_MAP 20 * WITH_SCREEN / 1920
 # define PI 3.14159265359
 # define FOV 90.0
-# define LEN_RAYCAST 500.0
+# define LEN_RAYCAST 500000.0
 # define PlAYER_SIZE 10
 # define PLAYER_SPEED 10
 
@@ -74,6 +74,18 @@ typedef struct s_coordonatef
 	double	y;
 } t_coordonatef;
 
+typedef struct s_all
+{
+	t_data		data;
+	t_window	window;
+}	t_all;
+
+typedef struct s_impact_info
+{
+	t_data		data;
+	t_window	window;
+}	t_impact_info;
+
 void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
 int					count_nb_chunck(char **map);
 void				show_map(t_img	img, char **map);
@@ -96,7 +108,7 @@ t_coordonate		add_vector(t_coordonate vector1, t_coordonate vector2);
 
 //Input
 
-int					input_handling(int keycode, t_data *data);
+int					input_handling(int keycode, t_all *all);
 void				move_up(t_data	*data);
 int					show_player_mini_map(t_img img, t_player player);
 t_player			make_player(char **map);
