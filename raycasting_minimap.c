@@ -13,6 +13,13 @@ void draw_line(t_data data, t_coordonatef pos, t_img img)
 	}
 }
 
+int is_in_wall_chunck(t_data data, t_coordonatef pos)
+{
+	if (data.map[(int)(pos.y / 100)][(int)(pos.x / 100)] == '1')
+		return (0);
+	return (1);
+}
+
 void calcul_draw_line(float degres, t_data data, t_img	img)
 {
 	double			radians;
@@ -21,14 +28,15 @@ void calcul_draw_line(float degres, t_data data, t_img	img)
 
 	i = 0.0;
 	radians = PI * degres / 180;
-//	printf("rad = %lf degres = ")
 
 	while (i < LEN_RAYCAST)
 	{
-		pos.x = i / (LEN_CHUNCK / LEN_CHUNCK_MAP) * cos(radians) + data.player.coordonate.x / (LEN_CHUNCK / LEN_CHUNCK_MAP);
-		pos.y = i / (LEN_CHUNCK / LEN_CHUNCK_MAP) * sin(radians) + data.player.coordonate.y / (LEN_CHUNCK / LEN_CHUNCK_MAP);
-		my_mlx_pixel_put(&img, (int)ceil(pos.x), (int)ceil(pos.y), 0x00FFFF00);
-		i+=20;
+		pos.x = i * cos(radians) + data.player.coordonate.x;
+		pos.y = i * sin(radians) + data.player.coordonate.y;
+		if (is_in_wall_chunck(data, pos) == 0)
+			break ;
+		my_mlx_pixel_put(&img, (int)ceil(pos.x / (LEN_CHUNCK / LEN_CHUNCK_MAP)), (int)ceil(pos.y / (LEN_CHUNCK / LEN_CHUNCK_MAP)), 0x00FFFF00);
+		i+=1;
 	}
 }
 
@@ -41,6 +49,6 @@ void raycasting_minimap(t_data data, t_img img)
 	while (degres < (float)(data.player.rotation) + FOV / 2.0)
 	{
 		calcul_draw_line(degres, data, img);
-		degres++;
+		degres+=1;
 	}
 }
