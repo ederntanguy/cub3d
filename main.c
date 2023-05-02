@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:18 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 11:13:13 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:23:01 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "mlx/mlx.h"
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
@@ -42,12 +43,14 @@ char	**parsing_map(char *argv)
 
 int	main(int argc, char **argv)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_img	img;
-	t_data data;
+	t_window	window;
+	t_data		data;
 
 	(void) argc;
+	data = setup_data(argv);
+	window = setup_mlx(&data);
+	show_debug_map(&data, &window);
+	ft_free_dbchar_tab(data.map, 0);
 	data.map = parsing_map(argv[1]);
 	data.player = make_player(data.map);
 	mlx = mlx_init();

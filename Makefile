@@ -7,13 +7,15 @@ LIBFT		=	 ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.
                  ft_realloc_dbchar.c
 
 SRCS		=	main.c show_minimap.c exit.c show_player.c player.c raycasting_minimap.c
+SRCS		=	main.c show_minimap.c exit.c player/movement.c player/vector_utils.c show_player.c player.c
 
 OBJDIR_SRCS	=	obj
 OBJDIR_SRCS2	=	libft/obj
 
 OBJS		=	\
 				$(addprefix $(OBJDIR_SRCS)/,$(SRCS:.c=.o)) \
-				$(addprefix $(OBJDIR_SRCS2)/,$(LIBFT:.c=.o))
+				$(addprefix $(OBJDIR_SRCS2)/,$(LIBFT:.c=.o)) \
+				
 
 CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra -g

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 11:12:49 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:23:37 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define PI 3.14159265359
 # define FOV 90.0
 # define LEN_RAYCAST 500.0
+# define PlAYER_SIZE 10
+# define PLAYER_SPEED 10
 
 # include "libft/get_next_line.h"
 # include "libft/libft.h"
@@ -29,8 +31,15 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "fcntl.h"
+# include <math.h>
 # include <X11/X.h>
 # include <math.h>
+
+typedef struct s_window
+{
+	void	*mlx;
+	void	*win;
+}	t_window;
 
 typedef struct s_img {
 	void	*img;
@@ -65,13 +74,36 @@ typedef struct s_coordonatef
 	double	y;
 } t_coordonatef;
 
-void		calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
-int			count_nb_chunck(char **map);
-void		show_map(t_img	img, char **map);
-void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
-int			quit(void *a);
-int			show_player_mini_map(t_img img, t_player player);
-t_player	make_player(char **map);
+void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
+int					count_nb_chunck(char **map);
+void				show_map(t_img	img, char **map);
+void				my_mlx_pixel_put(t_img *img, int x, int y, int color);
+int					quit(void *a);
+
+//Parcing
+
+char				**parsing_map(char *argv);
+
+//Setup
+
+t_window			setup_mlx(t_data *data);
+t_data				setup_data(char **argv);
+
+//Vector Utils
+
+t_coordonate		rotate_vector(t_coordonate vector, t_coordonate position, int angle);
+t_coordonate		add_vector(t_coordonate vector1, t_coordonate vector2);
+
+//Input
+
+int					input_handling(int keycode, t_data *data);
+void				move_up(t_data	*data);
+int					show_player_mini_map(t_img img, t_player player);
+t_player			make_player(char **map);
 void		raycasting_minimap(t_data data, t_img img);
+
+//Debug
+
+void				show_debug_map(t_data *data, t_window *window);
 
 #endif
