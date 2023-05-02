@@ -48,9 +48,12 @@ int	main(int argc, char **argv)
 
 	(void) argc;
 	data = setup_data(argv);
-	window = setup_mlx(&data);
+	setup_mlx(&window);
 	data.map = parsing_map(argv[1]);
 	data.player = make_player(data.map);
 	show_debug_map(&data, &window);
 	ft_free_dbchar_tab(data.map, 0);
+	mlx_key_hook(window.win, input_handling, &data);
+	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, NULL);
+	mlx_loop(window.mlx);
 }

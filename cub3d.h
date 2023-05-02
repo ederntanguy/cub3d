@@ -86,7 +86,7 @@ char				**parsing_map(char *argv);
 
 //Setup
 
-t_window			setup_mlx(t_data *data);
+void				setup_mlx(t_window *window);
 t_data				setup_data(char **argv);
 
 //Vector Utils

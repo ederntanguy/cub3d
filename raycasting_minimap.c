@@ -1,18 +1,5 @@
 #include "cub3d.h"
 
-void draw_line(t_data data, t_coordonatef pos, t_img img)
-{
-	float i;
-
-	(void) data;
-	i = 0.0;
-	while (i < LEN_RAYCAST)
-	{
-		my_mlx_pixel_put(&img, (int)ceil(i / (float)(LEN_CHUNCK / LEN_CHUNCK_MAP) * pos.x), (int)ceil(i / (float)(LEN_CHUNCK / LEN_CHUNCK_MAP) * pos.y), 0x00FFFF00);
-		i++;
-	}
-}
-
 int is_in_wall_chunck(t_data data, t_coordonatef pos)
 {
 	if (data.map[(int)(pos.y / 100)][(int)(pos.x / 100)] == '1')

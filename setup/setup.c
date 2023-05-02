@@ -9,14 +9,9 @@ t_data	setup_data(char **argv)
 	return (data);
 }
 
-t_window	setup_mlx(t_data *data)
+void	setup_mlx(t_window*window)
 {
-	t_window	window;
 
-	window.mlx = mlx_init();
-	window.win = mlx_new_window(window.mlx, 1920, 1080, "Hello world!");
-	mlx_key_hook(window.mlx, input_handling, data);
-	mlx_hook(window.mlx, DestroyNotify, ButtonReleaseMask, quit, NULL);
-	mlx_loop(window.mlx);
-	return (window);
+	window->mlx = mlx_init();
+	window->win = mlx_new_window(window->mlx, 1920, 1080, "Hello world!");
 }
