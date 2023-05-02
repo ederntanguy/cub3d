@@ -14,6 +14,7 @@
 
 # define CUB3D_H
 
+
 # define WITH_SCREEN 1920
 # define LENGTH_SCREEN 1080
 # define LEN_CHUNCK 100
