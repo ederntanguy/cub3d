@@ -54,8 +54,9 @@ int	main(int argc, char **argv)
 	data.player = make_player(data.map);
 	all.data = &data;
 	all.window = &window;
+	show_debug_map(&all);
 	mlx_key_hook(window.win, input_handling, &data);
-	mlx_loop_hook(window.mlx, show_debug_map, &all);
+//	mlx_loop_hook(window.mlx, show_debug_map, &all);
 	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, NULL);
 	mlx_loop(window.mlx);
 }

@@ -17,9 +17,10 @@
 # define WITH_SCREEN 1920
 # define LENGTH_SCREEN 1080
 # define LEN_CHUNCK 100
-# define LEN_CHUNCK_MAP 20 * WITH_SCREEN / 1920
+# define LEN_CHUNCK_MAP 10 * WITH_SCREEN / 1920
 # define PI 3.14159265359
 # define FOV 90.0
+# define DEGRES_PRECISION 0.1
 # define LEN_RAYCAST 500000.0
 # define PlAYER_SIZE 10
 # define PLAYER_SPEED 10
@@ -86,6 +87,13 @@ typedef struct s_all
 	t_window	*window;
 } t_all;
 
+typedef struct s_blocK_wall
+{
+	double	start_size;
+	double	end_size;
+	double	wall_len;
+} t_blocK_wall;
+
 void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
 int					count_nb_chunck(char **map);
 void				show_map(t_img	img, char **map);
@@ -118,4 +126,7 @@ void		raycasting_minimap(t_data data, t_img img);
 
 int					show_debug_map(t_all *all);
 
+//show 3dmap
+
+void				show3d_map(t_data data, t_img img, double *dpa);
 #endif

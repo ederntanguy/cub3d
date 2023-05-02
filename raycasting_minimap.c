@@ -21,11 +21,11 @@ t_raycast_info all_info_raycast_collision(t_data data, double radians, int i)
 	return (res);
 }
 
-void calcul_draw_line(float degres, t_data data, t_img	img)
+double calcul_draw_line(double degres, t_data data, t_img	img)
 {
 	double			radians;
 	t_coordonatef	pos;
-	float 			i;
+	double 			i;
 	t_raycast_info	collision_info;
 
 	i = 0.0;
@@ -38,22 +38,29 @@ void calcul_draw_line(float degres, t_data data, t_img	img)
 		{
 			collision_info = all_info_raycast_collision(data, radians, i);
 			printf("%lf\n", collision_info.distance);
-			break ;
+			return (collision_info.distance);
 		}
 		my_mlx_pixel_put(&img, (int)ceil(pos.x / (LEN_CHUNCK / LEN_CHUNCK_MAP)), (int)ceil(pos.y / (LEN_CHUNCK / LEN_CHUNCK_MAP)), 0x00FFFF00);
-		i+=1;
+		i += 1;
 	}
+	return (1.0);
 }
 
 void raycasting_minimap(t_data data, t_img img)
 {
-	float degres;
+	double	degres;
+	double	*distance_pts_array;
+	int 	i;
 
+	i = 0;
+	distance_pts_array = malloc(sizeof(double) * (int)((double)FOV / DEGRES_PRECISION + 2));
 	degres = (float)(data.player.rotation) - FOV / 2.0;
-
+	distance_pts_array[(int)((double)FOV / DEGRES_PRECISION + 1)] = -1;
 	while (degres < (float)(data.player.rotation) + FOV / 2.0)
 	{
-		calcul_draw_line(degres, data, img);
-		degres+=10;
+		distance_pts_array[i++] = calcul_draw_line(degres, data, img);
+		degres += DEGRES_PRECISION;
 	}
+	show3d_map(data, img, distance_pts_array);
+	free(distance_pts_array);
 }
