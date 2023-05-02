@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 10:30:19 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/05/02 11:05:43 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ typedef struct s_coordonate
 	int	x;
 	int	y;
 }	t_coordonate;
+
+typedef struct s_player
+{
+	t_coordonate	coordonate;
+	int				rotation;
+}	t_player;
+
+typedef struct s_data
+{
+	char		**map;
+	t_player	player;
+	
+} t_data;
 
 void	calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
 int		count_nb_chunck(char **map);
