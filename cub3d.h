@@ -20,7 +20,7 @@
 # define LEN_CHUNCK_MAP 20 * WITH_SCREEN / 1920
 # define PI 3.14159265359
 # define FOV 90.0
-# define LEN_RAYCAST 500.0
+# define LEN_RAYCAST 500000.0
 # define PlAYER_SIZE 10
 # define PLAYER_SPEED 10
 
@@ -80,6 +80,11 @@ typedef struct s_raycast_info
 	float	distance;
 } t_raycast_info;
 
+typedef struct s_all
+{
+	t_data		*data;
+	t_window	*window;
+} t_all;
 
 void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
 int					count_nb_chunck(char **map);
@@ -111,6 +116,6 @@ void		raycasting_minimap(t_data data, t_img img);
 
 //Debug
 
-void				show_debug_map(t_data *data, t_window *window);
+int					show_debug_map(t_all *all);
 
 #endif

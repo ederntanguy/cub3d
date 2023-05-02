@@ -1,14 +1,15 @@
 #include "../cub3d.h"
 
-void	show_debug_map(t_data *data, t_window *window)
+int	show_debug_map(t_all *all)
 {
 	t_img		img;
 
-	img.img = mlx_new_image(window->mlx, 1920, 1080);
+	img.img = mlx_new_image(all->window->mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
-	show_map(img, data->map);
-	show_player_mini_map(img, data->player);
-	raycasting_minimap(*data, img);
-	mlx_put_image_to_window(window->mlx, window->win, img.img, 0, 0);
+	show_map(img, all->data->map);
+	show_player_mini_map(img, all->data->player);
+	raycasting_minimap(*(all->data), img);
+	mlx_put_image_to_window(all->window->mlx, all->window->win, img.img, 0, 0);
+	return (0);
 }
