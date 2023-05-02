@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 11:05:43 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/02 11:12:49 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define WITH_SCREEN 1920
 # define LENGTH_SCREEN 1080
 # define LEN_CHUNCK 100
-# define LEN_CHUNCK_MAP 10 * WITH_SCREEN / 1920
+# define LEN_CHUNCK_MAP 20 * WITH_SCREEN / 1920
 
 # include "libft/get_next_line.h"
 # include "libft/libft.h"
@@ -59,6 +59,6 @@ void	calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
 int		count_nb_chunck(char **map);
 void	show_map(t_img	img, char **map);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-
+int		quit(void *a);
 
 #endif
