@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 12:50:08 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:13:45 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@
 # include <math.h>
 # include <X11/X.h>
 # include <math.h>
+
+typedef struct s_window
+{
+	void	*mlx;
+	void	*win;
+}	t_window;
 
 typedef struct s_img {
 	void	*img;
@@ -65,16 +71,29 @@ void				show_map(t_img	img, char **map);
 void				my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int					quit(void *a);
 
+//Parcing
+
+char				**parsing_map(char *argv);
+
+//Setup
+
+t_window			setup_mlx(t_data *data);
+t_data				setup_data(char **argv);
+
 //Vector Utils
 
-t_coordonate	rotate_vector(t_coordonate vector, t_coordonate position, int angle);
-t_coordonate	add_vector(t_coordonate vector1, t_coordonate vector2);
+t_coordonate		rotate_vector(t_coordonate vector, t_coordonate position, int angle);
+t_coordonate		add_vector(t_coordonate vector1, t_coordonate vector2);
 
 //Input
 
-int				input_handling(int keycode, t_data *data);
-void			move_up(t_data	*data);
-int			show_player_mini_map(t_img img, t_player player);
-t_player	make_player(char **map);
+int					input_handling(int keycode, t_data *data);
+void				move_up(t_data	*data);
+int					show_player_mini_map(t_img img, t_player player);
+t_player			make_player(char **map);
+
+//Debug
+
+void				show_debug_map(t_data *data, t_window *window);
 
 #endif

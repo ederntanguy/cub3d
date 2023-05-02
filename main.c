@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:18 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 12:49:24 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:14:20 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,12 @@ char	**parsing_map(char *argv)
 
 int	main(int argc, char **argv)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_img	img;
-	char	**map;
-	t_player player;
+	t_window	window;
+	t_data		data;
 
 	(void) argc;
-	map = parsing_map(argv[1]);
-	player = make_player(map);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-			&img.endian);
-	show_map(img, map);
-	show_player_mini_map(img, player);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_key_hook(mlx_win, input_handling, &data);
-	ft_free_dbchar_tab(map, 0);
-	mlx_hook(mlx_win, DestroyNotify, ButtonReleaseMask, quit, NULL);
-	mlx_loop(mlx);
+	data = setup_data(argv);
+	window = setup_mlx(&data);
+	show_debug_map(&data, &window);
+	ft_free_dbchar_tab(data.map, 0);
 }
