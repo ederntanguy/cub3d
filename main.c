@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:18 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 10:31:10 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/05/02 11:04:21 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int	main(int argc, char **argv)
 	show_map(img, map);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	ft_free_dbchar_tab(map, 0);
+	mlx_hook(mlx_win, DestroyNotify, ButtonReleaseMask, quit, NULL);
 	mlx_loop(mlx);
 }
