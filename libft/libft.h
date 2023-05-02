@@ -22,6 +22,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+char	**ft_realloc_dbchar(char **map, char *new_line);
 int		ft_dbstrlen(char **map);
 int		ft_free_dbchar_tab(char **str, int size);
 int		ft_atoi(const char *nptr);

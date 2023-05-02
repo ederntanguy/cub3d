@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
+/*   Updated: 2023/05/02 10:30:19 by etanguy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 
 # define CUB3D_H
 
 # define WITH_SCREEN 1920
-# define lengt_SCREEN 1080
+# define LENGTH_SCREEN 1080
 # define LEN_CHUNCK 100
-# define LEN_CHUNCK_MAP 100 * WITH_SCREEN / 1920
+# define LEN_CHUNCK_MAP 10 * WITH_SCREEN / 1920
 
 # include "libft/get_next_line.h"
 # include "libft/libft.h"
@@ -15,5 +27,25 @@
 # include <stdio.h>
 # include "fcntl.h"
 # include <X11/X.h>
+
+typedef struct s_img {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_img;
+
+typedef struct s_coordonate
+{
+	int	x;
+	int	y;
+}	t_coordonate;
+
+void	calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
+int		count_nb_chunck(char **map);
+void	show_map(t_img	img, char **map);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+
 
 #endif
