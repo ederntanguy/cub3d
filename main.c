@@ -6,11 +6,12 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:18 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 11:13:13 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/02 12:49:24 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "mlx/mlx.h"
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
@@ -54,6 +55,7 @@ int	main(int argc, char **argv)
 			&img.endian);
 	show_map(img, map);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_key_hook(mlx_win, input_handling, &data);
 	ft_free_dbchar_tab(map, 0);
 	mlx_hook(mlx_win, DestroyNotify, ButtonReleaseMask, quit, NULL);
 	mlx_loop(mlx);
