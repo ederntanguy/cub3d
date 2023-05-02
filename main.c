@@ -16,6 +16,8 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
+	if (!(x >= 0 && x <= WITH_SCREEN && y >= 0 && y <= LENGTH_SCREEN))
+		return ;
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
@@ -43,21 +45,21 @@ int	main(int argc, char **argv)
 	void	*mlx;
 	void	*mlx_win;
 	t_img	img;
-	char	**map;
-	t_player player;
+	t_data data;
 
 	(void) argc;
-	map = parsing_map(argv[1]);
-	player = make_player(map);
+	data.map = parsing_map(argv[1]);
+	data.player = make_player(data.map);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
-	show_map(img, map);
-	show_player_mini_map(img, player);
+	show_map(img, data.map);
+	show_player_mini_map(img, data.player);
+	raycasting_minimap(data, img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	ft_free_dbchar_tab(map, 0);
+	ft_free_dbchar_tab(data.map, 0);
 	mlx_hook(mlx_win, DestroyNotify, ButtonReleaseMask, quit, NULL);
 	mlx_loop(mlx);
 }

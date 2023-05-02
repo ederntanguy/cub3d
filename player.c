@@ -31,13 +31,13 @@ t_player	make_player(char **map)
 			player.coordonate.x = chunck_pos.x * LEN_CHUNCK;
 			player.coordonate.y = chunck_pos.y * LEN_CHUNCK;
 			if (map[chunck_pos.y][chunck_pos.x] == 'N')
-				player.rotation = 0;
-			else if (map[chunck_pos.y][chunck_pos.x] == 'E')
-				player.rotation = 90;
-			else if (map[chunck_pos.y][chunck_pos.x] == 'S')
-				player.rotation = 180;
-			else if (map[chunck_pos.y][chunck_pos.x] == 'W')
 				player.rotation = 270;
+			else if (map[chunck_pos.y][chunck_pos.x] == 'E')
+				player.rotation = 0;
+			else if (map[chunck_pos.y][chunck_pos.x] == 'S')
+				player.rotation = 90;
+			else if (map[chunck_pos.y][chunck_pos.x] == 'W')
+				player.rotation = 180;
 			return (player);
 		}
 		chunck++;

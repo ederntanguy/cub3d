@@ -18,6 +18,9 @@
 # define LENGTH_SCREEN 1080
 # define LEN_CHUNCK 100
 # define LEN_CHUNCK_MAP 20 * WITH_SCREEN / 1920
+# define PI 3.14159265359
+# define FOV 90.0
+# define LEN_RAYCAST 500.0
 
 # include "libft/get_next_line.h"
 # include "libft/libft.h"
@@ -56,6 +59,12 @@ typedef struct s_data
 	
 } t_data;
 
+typedef struct s_coordonatef
+{
+	double	x;
+	double	y;
+} t_coordonatef;
+
 void		calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
 int			count_nb_chunck(char **map);
 void		show_map(t_img	img, char **map);
@@ -63,5 +72,6 @@ void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int			quit(void *a);
 int			show_player_mini_map(t_img img, t_player player);
 t_player	make_player(char **map);
+void		raycasting_minimap(t_data data, t_img img);
 
 #endif
