@@ -9,5 +9,6 @@ void	show_debug_map(t_data *data, t_window *window)
 			&img.endian);
 	show_map(img, data->map);
 	show_player_mini_map(img, data->player);
+	raycasting_minimap(*data, img);
 	mlx_put_image_to_window(window->mlx, window->win, img.img, 0, 0);
 }

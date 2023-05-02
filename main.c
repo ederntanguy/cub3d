@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:18 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 14:23:01 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/05/02 14:40:40 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,8 @@ int	main(int argc, char **argv)
 	(void) argc;
 	data = setup_data(argv);
 	window = setup_mlx(&data);
-	show_debug_map(&data, &window);
-	ft_free_dbchar_tab(data.map, 0);
 	data.map = parsing_map(argv[1]);
 	data.player = make_player(data.map);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-			&img.endian);
-	show_map(img, data.map);
-	show_player_mini_map(img, data.player);
-	raycasting_minimap(data, img);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	show_debug_map(&data, &window);
 	ft_free_dbchar_tab(data.map, 0);
-	mlx_hook(mlx_win, DestroyNotify, ButtonReleaseMask, quit, NULL);
-	mlx_loop(mlx);
 }

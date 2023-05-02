@@ -6,4 +6,5 @@ int	input_handling(int keycode, t_data *data)
 	{
 		move_up(data);
 	}
+	return (1);
 }
