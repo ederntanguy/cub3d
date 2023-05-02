@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 13:13:45 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:23:37 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # define LENGTH_SCREEN 1080
 # define LEN_CHUNCK 100
 # define LEN_CHUNCK_MAP 20 * WITH_SCREEN / 1920
+# define PI 3.14159265359
+# define FOV 90.0
+# define LEN_RAYCAST 500.0
 # define PlAYER_SIZE 10
 # define PLAYER_SPEED 10
 
@@ -65,6 +68,12 @@ typedef struct s_data
 	
 } t_data;
 
+typedef struct s_coordonatef
+{
+	double	x;
+	double	y;
+} t_coordonatef;
+
 void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
 int					count_nb_chunck(char **map);
 void				show_map(t_img	img, char **map);
@@ -91,6 +100,7 @@ int					input_handling(int keycode, t_data *data);
 void				move_up(t_data	*data);
 int					show_player_mini_map(t_img img, t_player player);
 t_player			make_player(char **map);
+void		raycasting_minimap(t_data data, t_img img);
 
 //Debug
 
