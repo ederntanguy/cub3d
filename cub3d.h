@@ -14,7 +14,6 @@
 
 # define CUB3D_H
 
-
 # define WITH_SCREEN 1920
 # define LENGTH_SCREEN 1080
 # define LEN_CHUNCK 100
@@ -74,6 +73,13 @@ typedef struct s_coordonatef
 	double	x;
 	double	y;
 } t_coordonatef;
+
+typedef struct s_raycast_info
+{
+	char	side;
+	float	distance;
+} t_raycast_info;
+
 
 void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
 int					count_nb_chunck(char **map);

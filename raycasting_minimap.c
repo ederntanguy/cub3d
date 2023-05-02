@@ -12,7 +12,7 @@ void calcul_draw_line(float degres, t_data data, t_img	img)
 	double			radians;
 	t_coordonatef	pos;
 	float 			i;
-
+	t_raycast_info	collision_info;
 	i = 0.0;
 	radians = PI * degres / 180;
 
@@ -21,7 +21,11 @@ void calcul_draw_line(float degres, t_data data, t_img	img)
 		pos.x = i * cos(radians) + data.player.coordonate.x;
 		pos.y = i * sin(radians) + data.player.coordonate.y;
 		if (is_in_wall_chunck(data, pos) == 0)
+		{
+			collision_info.side;
+			collision_info.distance
 			break ;
+		}
 		my_mlx_pixel_put(&img, (int)ceil(pos.x / (LEN_CHUNCK / LEN_CHUNCK_MAP)), (int)ceil(pos.y / (LEN_CHUNCK / LEN_CHUNCK_MAP)), 0x00FFFF00);
 		i+=1;
 	}
