@@ -7,7 +7,7 @@ LIBFT		=	 ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.
                  ft_realloc_dbchar.c
 
 SRCS		=	main.c show_minimap.c exit.c show_player.c player.c raycasting_minimap.c
-SRCS2		=	movement.c vector_utils.c input.c
+SRCS2		=	movement.c vector_utils.c input.c checker.c
 SRCS3		=	setup.c
 SRCS4		=	debug.c
 
@@ -26,7 +26,7 @@ OBJS		=	\
 				
 				
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra -g -O3
+CFLAGS		=	-Wall -Wextra -g -O3
 LIBS		=	-Lmlx -lmlx -lXext -lX11 -lm
 RM			=	rm -f
 

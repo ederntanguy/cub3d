@@ -11,9 +11,9 @@ t_coordonatef	rotate_vector(t_coordonatef vector, int angle)
 	return (rotated);
 }
 
-t_coordonate	add_vector(t_coordonatef vector1, t_coordonatef vector2)
+t_coordonatef	add_vector(t_coordonatef vector1, t_coordonatef vector2)
 {
-	t_coordonate	new;
+	t_coordonatef	new;
 
 	new.x = vector1.x + vector2.x;
 	new.y = vector1.y + vector2.y;

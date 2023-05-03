@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/03 15:02:59 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/03 22:54:34 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,16 @@ t_data				setup_data(char **argv);
 
 //Vector Utils
 
+int					check_x(t_coordonatef possible, t_data data);
+int 				check_y(t_coordonatef possible, t_data data);
+int					check_posible_position(t_coordonatef possible, t_data data);
 t_coordonatef		rotate_vector(t_coordonatef vector, int angle);
 t_coordonatef		add_vector(t_coordonatef vector1, t_coordonatef vector2);
 
 //Input
 
 int					input_handling(int keycode, t_all *all);
-void				move_up(t_data	*data);
+void				move(t_data	*data, double x, double y);
 int					show_player_mini_map(t_img img, t_player player);
 t_player			make_player(char **map);
 void				raycasting_minimap(t_data data, t_img img);
