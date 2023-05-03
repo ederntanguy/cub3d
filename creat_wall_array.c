@@ -105,27 +105,10 @@ void init_all_wall(t_blocK_wall *all_wall, double *distance_pts_array)
 				/ (exp(all_wall[i].end_distance / 500));
 		i++;
 	}
-	all_wall[i].wall_len = 0.0;
+	all_wall[i].wall_len = -1.0;
 }
 
-//void make_screen(t_blocK_wall *all_wall)
-//{
-//	int i;
-//	int j;
-//
-//	i = 0;
-//	j = 0;
-//	while (all_wall[i].wall_len != 0)
-//		i++;
-//	i--;
-//	while (i >= 0)
-//	{
-//		while (j < all_wall[i].height_start)
-//			j++;
-//	}
-//}
-
-void show3d_map(t_data data, t_img img, double *distance_pts_array)
+t_blocK_wall	*creat_wall_array(t_data data, t_img img, double *distance_pts_array)
 {
 	t_blocK_wall	*all_wall;
 	(void) data;
@@ -133,4 +116,5 @@ void show3d_map(t_data data, t_img img, double *distance_pts_array)
 	(void) distance_pts_array;
 	all_wall = malloc(sizeof(t_blocK_wall) * (count_wall(distance_pts_array) + 1));
 	init_all_wall(all_wall, distance_pts_array);
+	return (all_wall);
 }

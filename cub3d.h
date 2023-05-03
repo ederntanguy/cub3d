@@ -136,5 +136,7 @@ double				*raycasting_minimap(t_data data, t_img img);
 
 //show 3dmap
 
-void				show3d_map(t_data data, t_img img, double *dpa);
+t_blocK_wall		*creat_wall_array(t_data data, t_img img, double *distance_pts_array);
+void 				show_screen(t_blocK_wall *all_wall, t_img img);
+
 #endif

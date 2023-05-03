@@ -2,14 +2,18 @@
 
 int	show_debug_map(t_all *all)
 {
-	t_img		img;
+	t_img			img;
+	t_blocK_wall	*all_wall;
+	double			*distance_pts_array;
 
 	img.img = mlx_new_image(all->window->mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
 	show_map(img, all->data->map);
 	show_player_mini_map(img, all->data->player);
-	show3d_map(*(all->data), img, raycasting_minimap(*(all->data), img));
+	distance_pts_array = raycasting_minimap(*(all->data), img);
+	all_wall = creat_wall_array(*(all->data), img, distance_pts_array);
+	show_screen(all_wall, img);
 	mlx_put_image_to_window(all->window->mlx, all->window->win, img.img, 0, 0);
 	return (0);
 }
