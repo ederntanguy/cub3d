@@ -84,19 +84,42 @@ t_blocK_wall make_one_block(double *distance_pts_array, int *i)
 
 void init_all_wall(t_blocK_wall *all_wall, double *distance_pts_array)
 {
-	int	i;
-	int j;
+	int		i;
+	int		j;
+	double	current_position_pct;
 
 	i = 0;
 	j = 0;
+	current_position_pct = 0.0;
 	while (i < count_wall(distance_pts_array))
 	{
-		all_wall[i++] = make_one_block(distance_pts_array, &j);
+		all_wall[i] = make_one_block(distance_pts_array, &j);
+		all_wall[i].pourcentage_of_screen
+			= all_wall[i].wall_len * 100.0 / (FOV / DEGRES_PRECISION + 1);
+		all_wall[i].pos_x_start = WITH_SCREEN * current_position_pct / 100;
+		current_position_pct += all_wall[i].pourcentage_of_screen;
+		all_wall[i].pos_x_end = WITH_SCREEN * current_position_pct / 100;
+		i++;
 	}
-	all_wall[i].wall_len = 0;
-	all_wall[i].end_size = 0;
-	all_wall[i].start_size = 0;
+	all_wall[i].wall_len = 0.0;
+	all_wall[i].end_size = 0.0;
+	all_wall[i].start_size = 0.0;
+	all_wall[i].pourcentage_of_screen = 0.0;
 }
+
+//void make_screen(t_blocK_wall *all_wall)
+//{
+//	int i;
+//
+//	i = 0;
+//	while (all_wall[i].wall_len != 0)
+//		i++;
+//	i--;
+//	while (i >= 0)
+//	{
+//
+//	}
+//}
 
 void show3d_map(t_data data, t_img img, double *distance_pts_array)
 {

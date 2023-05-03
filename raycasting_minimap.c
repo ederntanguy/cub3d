@@ -37,7 +37,7 @@ double calcul_draw_line(double degres, t_data data, t_img	img)
 		if (is_in_wall_chunck(data, pos) == 0)
 		{
 			collision_info = all_info_raycast_collision(data, radians, i);
-			printf("%lf\n", collision_info.distance);
+//			printf("%lf\n", collision_info.distance);
 			return (collision_info.distance);
 		}
 		my_mlx_pixel_put(&img, (int)ceil(pos.x / (LEN_CHUNCK / LEN_CHUNCK_MAP)), (int)ceil(pos.y / (LEN_CHUNCK / LEN_CHUNCK_MAP)), 0x00FFFF00);
@@ -46,7 +46,7 @@ double calcul_draw_line(double degres, t_data data, t_img	img)
 	return (1.0);
 }
 
-void raycasting_minimap(t_data data, t_img img)
+double *raycasting_minimap(t_data data, t_img img)
 {
 	double	degres;
 	double	*distance_pts_array;
@@ -61,6 +61,5 @@ void raycasting_minimap(t_data data, t_img img)
 		distance_pts_array[i++] = calcul_draw_line(degres, data, img);
 		degres += DEGRES_PRECISION;
 	}
-	show3d_map(data, img, distance_pts_array);
-	free(distance_pts_array);
+	return (distance_pts_array);
 }

@@ -9,7 +9,7 @@ int	show_debug_map(t_all *all)
 			&img.endian);
 	show_map(img, all->data->map);
 	show_player_mini_map(img, all->data->player);
-	raycasting_minimap(*(all->data), img);
+	show3d_map(*(all->data), img, raycasting_minimap(*(all->data), img));
 	mlx_put_image_to_window(all->window->mlx, all->window->win, img.img, 0, 0);
 	return (0);
 }

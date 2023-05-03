@@ -92,6 +92,9 @@ typedef struct s_blocK_wall
 	double	start_size;
 	double	end_size;
 	double	wall_len;
+	double	pourcentage_of_screen;
+	int 	pos_x_start;
+	int 	pos_x_end;
 } t_blocK_wall;
 
 void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
@@ -120,11 +123,14 @@ int					input_handling(int keycode, t_data *data);
 void				move_up(t_data	*data);
 int					show_player_mini_map(t_img img, t_player player);
 t_player			make_player(char **map);
-void		raycasting_minimap(t_data data, t_img img);
 
 //Debug
 
 int					show_debug_map(t_all *all);
+
+//Raycasting
+
+double				*raycasting_minimap(t_data data, t_img img);
 
 //show 3dmap
 
