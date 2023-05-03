@@ -4,11 +4,11 @@ t_coordonate	rotate_vector(t_coordonate vector,
 	t_coordonate position, int angle)
 {
 	t_coordonate	rotated;
+	double			rad;
 
-	rotated.x = (vector.x - position.x) * cos(angle)
-		- (vector.y - position.y) * sin(angle);
-	rotated.y = (vector.x - position.x) * sin(angle)
-		- (vector.y - position.y) * cos(angle);
+	rad = angle * M_PI / 180.0;
+	rotated.x = vector.x * cos(rad) - vector.y * sin(rad);
+	rotated.y = vector.x * sin(rad) - vector.y * cos(rad);
 	return (rotated);
 }
 
