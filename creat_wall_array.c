@@ -70,19 +70,19 @@ double get_end_wall(t_raycast_info *raycast_info, int *i)
 	return (raycast_info[*i - 1].distance);
 }
 
-t_blocK_wall make_one_block(double *raycast_info, int *i)
+t_blocK_wall make_one_block(t_raycast_info *raycast_info, int *i)
 {
 	int i_start_value;
 	t_blocK_wall wall;
 
 	i_start_value = *i;
-	wall.start_distance = raycast_info[*i];
+	wall.start_distance = raycast_info[*i].distance;
 	wall.end_distance = get_end_wall(raycast_info, i);
 	wall.wall_len = *i - i_start_value;
 	return (wall);
 }
 
-void init_all_wall(t_blocK_wall *all_wall, double *raycast_info)
+void init_all_wall(t_blocK_wall *all_wall, t_raycast_info *raycast_info)
 {
 	int		i;
 	int		j;
