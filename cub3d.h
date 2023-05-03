@@ -89,14 +89,16 @@ typedef struct s_all
 
 typedef struct s_blocK_wall
 {
-	double	start_distance;
-	double	end_distance;
-	double	wall_len;
-	double	pourcentage_of_screen;
-	int 	pos_x_start;
-	int 	pos_x_end;
-	int 	height_start;
-	int 	height_end;
+	double			start_distance;
+	double			end_distance;
+	double			wall_len;
+	double			pourcentage_of_screen;
+	int				pos_x_start;
+	int				pos_x_end;
+	int				height_start;
+	int				height_end;
+	t_coordonate	first_inpact;
+	t_coordonate	last_inpact;
 } t_blocK_wall;
 
 void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
