@@ -30,13 +30,15 @@ void	show_bottom_top_line(t_img img, t_blocK_wall all_wall, int color)
 				- (hgt_scrn - all_wall.height_end) / 2, 2)
 				+ pow(all_wall.pos_x_start - all_wall.pos_x_end, 2));
 	radian = acos((all_wall.pos_x_end - all_wall.pos_x_start) / len_line);
+	if (all_wall.start_distance > all_wall.end_distance)
+		radian = -radian;
 	while (i < len_line)
 	{
 		pos.x = i * cos(radian) + all_wall.pos_x_start;
 		pos.y = i * sin(radian) + (hgt_scrn - all_wall.height_start) / 2;
 		my_mlx_pixel_put(&img, pos.x, pos.y, color);
-		pos.x = i * cos(- radian) + all_wall.pos_x_start;
-		pos.y = i * sin(- radian) + (hgt_scrn - (hgt_scrn - all_wall.height_start) / 2);
+		pos.x = i * cos(-radian) + all_wall.pos_x_start;
+		pos.y = i * sin(-radian) + (hgt_scrn - (hgt_scrn - all_wall.height_start) / 2);
 		my_mlx_pixel_put(&img, pos.x, pos.y, color);
 		i++;
 	}
@@ -55,7 +57,7 @@ void	show_screen(t_blocK_wall *all_wall, t_img img)
 	{
 		show_right_left_line(img, all_wall[i].pos_x_start, all_wall[i].height_start, color);
 		show_right_left_line(img, all_wall[i].pos_x_end - 1, all_wall[i].height_end, color);
-		color *= 16;
+//		color *= 16;
 		show_bottom_top_line(img, all_wall[i], color);
 		i++;
 	}

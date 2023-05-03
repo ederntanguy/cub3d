@@ -19,7 +19,7 @@
 # define LEN_CHUNCK 100
 # define LEN_CHUNCK_MAP 10 * WITH_SCREEN / 1920
 # define PI 3.14159265359
-# define FOV 90.0
+# define FOV 120.0
 # define DEGRES_PRECISION 0.1
 # define LEN_RAYCAST 500000.0
 # define PlAYER_SIZE 10
@@ -66,7 +66,6 @@ typedef struct s_data
 {
 	char		**map;
 	t_player	player;
-	
 } t_data;
 
 typedef struct s_coordonatef
@@ -77,8 +76,9 @@ typedef struct s_coordonatef
 
 typedef struct s_raycast_info
 {
-	char	side;
-	float	distance;
+	char			side;
+	float			distance;
+	t_coordonate	pos;
 } t_raycast_info;
 
 typedef struct s_all
@@ -132,11 +132,11 @@ int					show_debug_map(t_all *all);
 
 //Raycasting
 
-double				*raycasting_minimap(t_data data, t_img img);
+t_raycast_info		*raycasting_minimap(t_data data, t_img img);
 
 //show 3dmap
 
-t_blocK_wall		*creat_wall_array(t_data data, t_img img, double *distance_pts_array);
+t_blocK_wall		*creat_wall_array(t_data data, t_img img, t_raycast_info *raycast_info);
 void 				show_screen(t_blocK_wall *all_wall, t_img img);
 
 #endif
