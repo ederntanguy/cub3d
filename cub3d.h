@@ -19,7 +19,7 @@
 # define LEN_CHUNCK 100
 # define LEN_CHUNCK_MAP 10 * WITH_SCREEN / 1920
 # define PI 3.14159265359
-# define FOV 120.0
+# define FOV 100.0
 # define DEGRES_PRECISION 0.1
 # define LEN_RAYCAST 500000.0
 # define PlAYER_SIZE 10
