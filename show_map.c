@@ -76,8 +76,8 @@ t_blocK_wall make_one_block(double *distance_pts_array, int *i)
 	t_blocK_wall wall;
 
 	i_start_value = *i;
-	wall.start_size = distance_pts_array[*i];
-	wall.end_size = get_end_wall(distance_pts_array, i);
+	wall.start_distance = distance_pts_array[*i];
+	wall.end_distance = get_end_wall(distance_pts_array, i);
 	wall.wall_len = *i - i_start_value;
 	return (wall);
 }
@@ -99,25 +99,29 @@ void init_all_wall(t_blocK_wall *all_wall, double *distance_pts_array)
 		all_wall[i].pos_x_start = WITH_SCREEN * current_position_pct / 100;
 		current_position_pct += all_wall[i].pourcentage_of_screen;
 		all_wall[i].pos_x_end = WITH_SCREEN * current_position_pct / 100;
+		all_wall[i].height_start = (int)(HEIGHT_SCREEN * 1.2)
+				/ (exp(all_wall[i].start_distance / 500));
+		all_wall[i].height_end = (int)(HEIGHT_SCREEN * 1.2)
+				/ (exp(all_wall[i].end_distance / 500));
 		i++;
 	}
 	all_wall[i].wall_len = 0.0;
-	all_wall[i].end_size = 0.0;
-	all_wall[i].start_size = 0.0;
-	all_wall[i].pourcentage_of_screen = 0.0;
 }
 
 //void make_screen(t_blocK_wall *all_wall)
 //{
 //	int i;
+//	int j;
 //
 //	i = 0;
+//	j = 0;
 //	while (all_wall[i].wall_len != 0)
 //		i++;
 //	i--;
 //	while (i >= 0)
 //	{
-//
+//		while (j < all_wall[i].height_start)
+//			j++;
 //	}
 //}
 

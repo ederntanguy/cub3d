@@ -15,7 +15,7 @@
 # define CUB3D_H
 
 # define WITH_SCREEN 1920
-# define LENGTH_SCREEN 1080
+# define HEIGHT_SCREEN 1080
 # define LEN_CHUNCK 100
 # define LEN_CHUNCK_MAP 10 * WITH_SCREEN / 1920
 # define PI 3.14159265359
@@ -89,12 +89,14 @@ typedef struct s_all
 
 typedef struct s_blocK_wall
 {
-	double	start_size;
-	double	end_size;
+	double	start_distance;
+	double	end_distance;
 	double	wall_len;
 	double	pourcentage_of_screen;
 	int 	pos_x_start;
 	int 	pos_x_end;
+	int 	height_start;
+	int 	height_end;
 } t_blocK_wall;
 
 void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
