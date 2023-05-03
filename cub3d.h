@@ -123,7 +123,7 @@ t_coordonate		add_vector(t_coordonate vector1, t_coordonate vector2);
 
 //Input
 
-int					input_handling(int keycode, t_data *data);
+int					input_handling(int keycode, t_all *all);
 void				move_up(t_data	*data);
 int					show_player_mini_map(t_img img, t_player player);
 t_player			make_player(char **map);
