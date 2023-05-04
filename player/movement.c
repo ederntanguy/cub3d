@@ -1,23 +1,16 @@
 #include "../cub3d.h"
+#include <math.h>
+#include <stdio.h>
 
-int	check_posible_position(t_coordonate possible, t_data data)
+void	move(t_data	*data, double x, double y)
 {
-	if (possible.x / LEN_CHUNCK < PlAYER_SIZE
-		&& possible.y / LEN_CHUNCK < PlAYER_SIZE
-		&& data.map[possible.y / LEN_CHUNCK][possible.x / LEN_CHUNCK] != 0)
-		return (1);
-	return (0);
-}
+	t_coordonatef	initial_vector;
+	t_coordonatef	new_position;
 
-void	move_up(t_data	*data)
-{
-	t_coordonate	initial_vector;
-	t_coordonate	new_position;
-
-	initial_vector.x = PLAYER_SPEED;
-	initial_vector.y = 0;
+	initial_vector.x = x;
+	initial_vector.y = y;
 	initial_vector = rotate_vector(initial_vector,
-			data->player.coordonate, data->player.rotation);
+			data->player.rotation);
 	new_position = add_vector(initial_vector, data->player.coordonate);
 	if (check_posible_position(new_position, *data))
 		data->player.coordonate = new_position;

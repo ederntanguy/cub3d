@@ -1,20 +1,19 @@
 #include "../cub3d.h"
 
-t_coordonate	rotate_vector(t_coordonate vector,
-	t_coordonate position, int angle)
+t_coordonatef	rotate_vector(t_coordonatef vector, int angle)
 {
-	t_coordonate	rotated;
+	t_coordonatef	rotated;
+	double			rad;
 
-	rotated.x = (vector.x - position.x) * cos(angle)
-		- (vector.y - position.y) * sin(angle);
-	rotated.y = (vector.x - position.x) * sin(angle)
-		- (vector.y - position.y) * cos(angle);
+	rad = angle * M_PI / 180.0;
+	rotated.x = vector.x * cos(rad) - vector.y * sin(rad);
+	rotated.y = vector.x * sin(rad) - vector.y * cos(rad);
 	return (rotated);
 }
 
-t_coordonate	add_vector(t_coordonate vector1, t_coordonate vector2)
+t_coordonatef	add_vector(t_coordonatef vector1, t_coordonatef vector2)
 {
-	t_coordonate	new;
+	t_coordonatef	new;
 
 	new.x = vector1.x + vector2.x;
 	new.y = vector1.y + vector2.y;
