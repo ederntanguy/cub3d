@@ -87,6 +87,12 @@ typedef struct s_all
 	t_window	*window;
 } t_all;
 
+typedef struct s_each_wall_pos
+{
+	int	pos_x_start;
+	int	pos_x_end;
+}	t_each_wall_pos;
+
 typedef struct s_blocK_wall
 {
 	double			start_distance;
@@ -99,6 +105,8 @@ typedef struct s_blocK_wall
 	int				height_end;
 	t_coordonate	first_inpact;
 	t_coordonate	last_inpact;
+	t_each_wall_pos	*each_wall;
+
 } t_blocK_wall;
 
 void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);

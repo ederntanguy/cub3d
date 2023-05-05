@@ -27,8 +27,8 @@ void	show_bottom_top_line(t_img img, t_blocK_wall all_wall, int color)
 	(void) color;
 	hgt_scrn = HEIGHT_SCREEN;
 	len_line = sqrt(pow((hgt_scrn - all_wall.height_start) / 2
-				- (hgt_scrn - all_wall.height_end) / 2, 2)
-				+ pow(all_wall.pos_x_start - all_wall.pos_x_end, 2));
+						- (hgt_scrn - all_wall.height_end) / 2, 2)
+					+ pow(all_wall.pos_x_start - all_wall.pos_x_end, 2));
 	radian = acos((all_wall.pos_x_end - all_wall.pos_x_start) / len_line);
 	if (all_wall.start_distance > all_wall.end_distance)
 		radian = -radian;

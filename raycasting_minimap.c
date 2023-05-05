@@ -20,6 +20,40 @@ t_raycast_info all_info_raycast_collision(t_data data, double radians, int i)
 	return (res);
 }
 
+char side_collision(t_data data, t_raycast_info collision_info)
+{
+	static char last;
+
+	if ((int)collision_info.pos.y % 100 == 0 && (int)collision_info.pos.x % 100 == 0)
+		return (last);
+	if ((int)collision_info.pos.y % 100 == 0)
+	{
+		if (data.map[(int)collision_info.pos.y / 100][(int)collision_info.pos.x / 100] == '1')
+		{
+			last = 'T';
+			return ('T');
+		}
+		else
+		{
+			last = 'B';
+			return ('B');
+		}
+	}
+	else
+	{
+		if (data.map[(int)collision_info.pos.y / 100][(int)collision_info.pos.x / 100] == '1')
+		{
+			last = 'L';
+			return ('L');
+		}
+		else
+		{
+			last = 'R';
+			return ('R');
+		}
+	}
+}
+
 t_raycast_info calcul_draw_line(double degres, t_data data, t_img	img)
 {
 	double			radians;
@@ -36,6 +70,7 @@ t_raycast_info calcul_draw_line(double degres, t_data data, t_img	img)
 		if (is_in_wall_chunck(data, pos) == 0)
 		{
 			collision_info = all_info_raycast_collision(data, radians, i);
+			collision_info.side = side_collision(data, collision_info);
 			return (collision_info);
 		}
 		my_mlx_pixel_put(&img, (int)ceil(pos.x / (LEN_CHUNCK / LEN_CHUNCK_MAP)), (int)ceil(pos.y / (LEN_CHUNCK / LEN_CHUNCK_MAP)), 0x00FFFF00);
