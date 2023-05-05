@@ -106,7 +106,7 @@ t_each_wall_pos *find_all_wall_separatio(int i_start_value, int *i, t_raycast_in
 	all_wall_tab[0].pos_it_end = -1;
 	last_chunck = raycast_info[i_start_value].pos.x / 100 * 10000000 + raycast_info[i_start_value].pos.y / 100;
 	start = i_start_value;
-	while (i_start_value <= *i)
+	while (i_start_value < *i)
 	{
 		if (last_chunck != raycast_info[i_start_value].pos.x / 100 * 10000000 + raycast_info[i_start_value].pos.y / 100)
 		{
