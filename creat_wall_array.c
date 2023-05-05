@@ -123,9 +123,9 @@ void init_all_wall(t_blocK_wall *all_wall, t_raycast_info *raycast_info)
 		current_position_pct += all_wall[i].pourcentage_of_screen;
 		all_wall[i].pos_x_end = WITH_SCREEN * current_position_pct / 100;
 		all_wall[i].height_start = (int)(HEIGHT_SCREEN * 1.2)
-				/ (exp(all_wall[i].start_distance / 300));
+				/ (all_wall[i].start_distance / 100);
 		all_wall[i].height_end = (int)(HEIGHT_SCREEN * 1.2)
-				/ (exp(all_wall[i].end_distance / 300));
+				/ (all_wall[i].end_distance / 100);
 		if (i > 0 && ((all_wall[i].last_inpact.x == all_wall[i].first_inpact.x
 					  && (all_wall[i].first_inpact.x == all_wall[i - 1].last_inpact.x)
 					  && (all_wall[i - 1].last_inpact.x == all_wall[i - 1].first_inpact.x))
