@@ -89,8 +89,8 @@ typedef struct s_all
 
 typedef struct s_each_wall_pos
 {
-	int	pos_x_start;
-	int	pos_x_end;
+	int	pos_it_start;
+	int	pos_it_end;
 }	t_each_wall_pos;
 
 typedef struct s_blocK_wall

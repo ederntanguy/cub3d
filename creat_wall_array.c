@@ -45,29 +45,6 @@ int count_wall(t_raycast_info *raycast_info)
 	return (count);
 }
 
-//int count_wall(t_raycast_info *raycast_info)
-//{
-//	int				count;
-//	int				i;
-//	t_coordonate	last_segment;
-//
-//	i = 0;
-//	count = 1;
-//	last_segment.x = raycast_info[0].pos.x / 100;
-//	last_segment.y = raycast_info[0].pos.y / 100;
-//	while (raycast_info[i].distance != -1)
-//	{
-//		if (raycast_info[i].pos.x / 100 != last_segment.x || raycast_info[i].pos.y / 100 != last_segment.y)
-//		{
-//			count++;
-//			last_segment.x = raycast_info[i].pos.x / 100;
-//			last_segment.y = raycast_info[i].pos.y / 100;
-//		}
-//		i++;
-//	}
-//	return (count);
-//}
-
 double get_end_wall(t_raycast_info *raycast_info, int *i)
 {
 	int		evolution;
@@ -96,26 +73,56 @@ double get_end_wall(t_raycast_info *raycast_info, int *i)
 	return (raycast_info[*i - 1].distance);
 }
 
-//double get_end_wall(t_raycast_info *raycast_info, int *i)
-//{
-//	t_coordonate	last_segment;
-//
-//	last_segment.x = raycast_info[*i].pos.x / 100;
-//	last_segment.y = raycast_info[*i].pos.y / 100;
-//
-//	while (raycast_info[*i].distance != -1)
-//	{
-//		if (raycast_info[*i].pos.x / 100 != last_segment.x || raycast_info[*i].pos.y / 100 != last_segment.y)
-//			return (raycast_info[*i].distance);
-//		(*i)++;
-//	}
-//	return (raycast_info[*i - 1].distance);
-//}
+t_each_wall_pos *add_wall(t_each_wall_pos *all_wall_tab, int it_start, int it_end)
+{
+	int				i;
+	int 			j;
+
+	j = 0;
+	t_each_wall_pos *new;
+	i = 0;
+	while (all_wall_tab[i].pos_it_end != -1)
+		i++;
+	new = malloc(sizeof(t_each_wall_pos) * (i + 2));
+	while (i > j)
+	{
+		new[j].pos_it_end = all_wall_tab[j].pos_it_end;
+		new[j].pos_it_start = all_wall_tab[j].pos_it_start;
+		j++;
+	}
+	new[j].pos_it_start = it_start;
+	new[j].pos_it_end = it_end;
+	new[j + 1].pos_it_end = -1;
+	return (free(all_wall_tab), new);
+}
+
+t_each_wall_pos *find_all_wall_separatio(int i_start_value, int *i, t_raycast_info *raycast_info)
+{
+	int				start;
+	int 			last_chunck;
+	t_each_wall_pos	*all_wall_tab;
+
+	all_wall_tab = malloc(sizeof(t_each_wall_pos));
+	all_wall_tab[0].pos_it_end = -1;
+	last_chunck = raycast_info[i_start_value].pos.x / 100 * 10000000 + raycast_info[i_start_value].pos.y / 100;
+	start = i_start_value;
+	while (i_start_value <= *i)
+	{
+		if (last_chunck != raycast_info[i_start_value].pos.x / 100 * 10000000 + raycast_info[i_start_value].pos.y / 100)
+		{
+			all_wall_tab = add_wall(all_wall_tab, start, i_start_value);
+			start = i_start_value;
+			last_chunck = raycast_info[i_start_value].pos.x / 100 * 10000000 + raycast_info[i_start_value].pos.y / 100;
+		}
+		i_start_value++;
+	}
+	return (all_wall_tab);
+}
 
 t_blocK_wall make_one_block(t_raycast_info *raycast_info, int *i)
 {
-	int i_start_value;
-	t_blocK_wall wall;
+	int				i_start_value;
+	t_blocK_wall	wall;
 
 	i_start_value = *i;
 	wall.start_distance = raycast_info[*i].distance;
@@ -123,7 +130,39 @@ t_blocK_wall make_one_block(t_raycast_info *raycast_info, int *i)
 	wall.last_inpact = raycast_info[*i - 1].pos;
 	wall.first_inpact = raycast_info[i_start_value].pos;
 	wall.wall_len = *i - i_start_value;
+	wall.each_wall = find_all_wall_separatio(i_start_value, i, raycast_info);
 	return (wall);
+}
+
+t_each_wall_pos *fusion_tab_wall(t_each_wall_pos *first, t_each_wall_pos *last)
+{
+	t_each_wall_pos	*new;
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (first[i].pos_it_end != -1)
+		i++;
+	while (last[k++].pos_it_end != -1)
+		i++;
+	k = 0;
+	new = malloc(sizeof(t_each_wall_pos) * (i + 1));
+	while (first[j].pos_it_end != -1)
+	{
+		new[j].pos_it_end = first[j].pos_it_end;
+		new[j].pos_it_start = first[j].pos_it_start;
+		j++;
+	}
+	while (last[k].pos_it_end != -1)
+	{
+		new[j].pos_it_end = last[k].pos_it_end;
+		new[j++].pos_it_start = last[k++].pos_it_start;
+	}
+	new[j].pos_it_end = -1;
+	return (free(first), free(last), new);
 }
 
 t_blocK_wall fusion_wall(t_blocK_wall first, t_blocK_wall last)
@@ -140,6 +179,7 @@ t_blocK_wall fusion_wall(t_blocK_wall first, t_blocK_wall last)
 	new.pos_x_start = first.pos_x_start;
 	new.first_inpact = first.first_inpact;
 	new.last_inpact = last.last_inpact;
+	new.each_wall = fusion_tab_wall(first.each_wall, last.each_wall);
 	return (new);
 }
 
