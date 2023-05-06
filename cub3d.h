@@ -16,8 +16,8 @@
 
 # define WITH_SCREEN 1920
 # define HEIGHT_SCREEN 1080
-# define LEN_CHUNCK 100
-# define LEN_CHUNCK_MAP 10 * WITH_SCREEN / 1920
+# define LEN_CHUNCK 1
+# define LEN_CHUNCK_MAP 0.01
 # define PI 3.14159265359
 # define FOV 100.0
 # define DEGRES_PRECISION 0.1
@@ -58,7 +58,7 @@ typedef struct s_coordonate
 
 typedef struct s_player
 {
-	t_coordonate	coordonate;
+	t_coordonate	coordonatef;
 	int				rotation;
 }	t_player;
 
@@ -80,6 +80,29 @@ typedef struct s_raycast_info
 	float			distance;
 	t_coordonate	pos;
 } t_raycast_info;
+
+typedef struct s_camera{
+	double pos_x;
+	double pos_y;
+	double dir_x;
+	double dir_y;
+	double plane_y;
+	double plane_x;
+} t_camera;
+
+typedef struct s_ray{
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int 	step_y;
+	int		side; // 0 for X-side, 1 for Y-side
+	double ray_dir_x;
+	double ray_dir_y;} t_ray;
 
 typedef struct s_all
 {
@@ -142,11 +165,11 @@ int					show_debug_map(t_all *all);
 
 //Raycasting
 
-t_raycast_info		*raycasting_minimap(t_data data);
+double				*raycasting_minimap(t_data data, t_img img);
 
 //show 3dmap
 
 t_blocK_wall		*creat_wall_array(t_data data, t_img img, t_raycast_info *raycast_info);
-void 				show_screen(t_blocK_wall *all_wall, t_img img);
+void 				show_screen(double *all_wall, t_img img);
 
 #endif

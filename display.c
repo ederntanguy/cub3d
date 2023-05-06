@@ -40,24 +40,23 @@ void	show_bottom_top_line(t_img img, t_blocK_wall all_wall, int color)
 	}
 }
 
-void	show_screen(t_blocK_wall *all_wall, t_img img)
+void	show_screen(double *all_wall, t_img img)
 {
 	int i;
 	int color;
-	int color2;
 
 	color = 0x0000FF;
-	color2 = 0x00FF00;
 
 	i = 0;
-	while (all_wall[i].wall_len != -1.0)
+	while (i <  1920)
 	{
-		show_right_left_line(img, all_wall[i].pos_x_start, all_wall[i].height_start, color);
-		show_right_left_line(img, all_wall[i].pos_x_end - 1, all_wall[i].height_end, color);
-		if (i == 2)
-			show_bottom_top_line(img, all_wall[i], color2);
-		else
-			show_bottom_top_line(img, all_wall[i], color);
+
+		show_right_left_line(img, i, HEIGHT_SCREEN / all_wall[i], color);
+//		show_right_left_line(img, all_wall[i].pos_x_end - 1, all_wall[i].height_end, color);
+//		if (i == 2)
+//			show_bottom_top_line(img, all_wall[i], color2);
+//		else
+//			show_bottom_top_line(img, all_wall[i], color);
 		i++;
 	}
 }

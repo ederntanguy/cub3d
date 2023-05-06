@@ -17,8 +17,8 @@ void	move_up(t_data	*data)
 	initial_vector.x = PLAYER_SPEED;
 	initial_vector.y = 0;
 	initial_vector = rotate_vector(initial_vector,
-			data->player.coordonate, data->player.rotation);
-	new_position = add_vector(initial_vector, data->player.coordonate);
+			data->player.coordonatef, data->player.rotation);
+	new_position = add_vector(initial_vector, data->player.coordonatef);
 	if (check_posible_position(new_position, *data))
-		data->player.coordonate = new_position;
+		data->player.coordonatef = new_position;
 }

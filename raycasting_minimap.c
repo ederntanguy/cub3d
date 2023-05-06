@@ -1,139 +1,105 @@
 #include "cub3d.h"
 
-int is_in_wall_chunck(char **map, t_coordonate pos)
+void	init_ray(t_ray *ray, t_camera *camera, double camerax)
 {
-		if (map[pos.y / 100][pos.x / 100] == '1')
-			return (0);
-	return (1);
-}
-
-t_raycast_info all_info_raycast_collision(t_data data, double radians, double i)
-{
-	t_raycast_info	res;
-
-	res.pos.x = (int)(i * cos(radians) + data.player.coordonate.x);
-	res.pos.y = (int)(i * sin(radians) + data.player.coordonate.y);
-	res.distance = sqrt((res.pos.x - data.player.coordonate.x)
-			* (res.pos.x - data.player.coordonate.x)
-			+ (res.pos.y - data.player.coordonate.y)
-			* (res.pos.y - data.player.coordonate.y));
-	return (res);
-}
-
-char side_collision(t_data data, t_raycast_info collision_info)
-{
-	static char last;
-
-	if ((int)collision_info.pos.y % 100 == 0 && (int)collision_info.pos.x % 100 == 0)
-		return (last);
-	if ((int)collision_info.pos.y % 100 == 0)
+	ray->ray_dir_x = camera->dir_x + camera->plane_x * camerax;
+	ray->ray_dir_y = camera->dir_y + camera->plane_y * camerax;
+	ray->map_x = (int)camera->pos_x;
+	ray->map_y = (int)camera->pos_y;
+	ray->delta_dist_x = fabs(1.0 / ray->ray_dir_x);
+	ray->delta_dist_y = fabs(1.0 / ray->ray_dir_y);
+	if (ray->ray_dir_x < 0)
 	{
-		if (data.map[(int)collision_info.pos.y / 100][(int)collision_info.pos.x / 100] == '1')
-		{
-			last = 'T';
-			return ('T');
-		}
-		else
-		{
-			last = 'B';
-			return ('B');
-		}
+		ray->step_x = -1;
+		ray->side_dist_x = (camera->pos_x - ray->map_x) * ray->delta_dist_x;
 	}
 	else
 	{
-		if (data.map[(int)collision_info.pos.y / 100][(int)collision_info.pos.x / 100] == '1')
+		ray->step_x = 1;
+		ray->side_dist_x = (ray->map_x + 1.0 - camera->pos_x) * ray->delta_dist_x;
+	}
+	if (ray->ray_dir_y < 0)
+	{
+		ray->step_y = -1;
+		ray->side_dist_y = (camera->pos_y - ray->map_y) * ray->delta_dist_y;
+	}
+	else
+	{
+		ray->step_y = 1;
+		ray->side_dist_y = (ray->map_y + 1.0 - camera->pos_y) * ray->delta_dist_y;
+	}
+}
+
+void	make_dda(t_ray *ray, char **map)
+{
+	int hit;
+
+	hit = 0;
+	while (!hit)
+	{
+		if (ray->side_dist_x < ray->side_dist_y)
 		{
-			last = 'L';
-			return ('L');
+			ray->side_dist_x += ray->delta_dist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
 		}
 		else
 		{
-			last = 'R';
-			return ('R');
+			ray->side_dist_y += ray->delta_dist_y;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
 		}
+		if (map[ray->map_y][ray->map_x] == '1')
+			hit = 1;
 	}
+	if (ray->side == 0)
+		ray->perp_wall_dist = ray->side_dist_x - ray->delta_dist_x;
+	else
+		ray->perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;
 }
 
-void sort_doubl_tab(double *tab, int len)
+double	calcule_raycast(t_data data, t_img img, int x, t_camera camera)
 {
-	int		i;
-	int 	j;
-	double	tmp;
+	t_ray		ray;
+	double		camerax;
 
-	i = 0;
-	while (i < len)
-	{
-		j = 0;
-		while (j < len)
-		{
-			if (j + 1 < len && tab[j] > tab[j + 1])
-			{
-				tmp = tab[j];
-				tab[j] = tab[j + 1];
-				tab[j + 1] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
+//	(void) data;
+	(void) img;
+
+	camerax = (2.0 * (double)x) / (double)WITH_SCREEN - 1.0;
+	init_ray(&ray, &camera, camerax);
+	make_dda(&ray, data.map);
+	return (ray.perp_wall_dist);
 }
 
-double	creat_i_value(double radians, t_coordonate player_pos, char **map)
+double *raycasting_minimap(t_data data, t_img img)
 {
-	int				i;
-	double 			value;
-	t_coordonate	pos;
-
-	i = ceil(player_pos.x / 100);
-	while (i < ft_strlen(map[0]))
-	{
-		value = ((double)i * 100.0 - player_pos.x) / cos(radians);
-		pos.x = (int)(value * cos(radians) + player_pos.x);
-		pos.y = (int)(value * sin(radians) + player_pos.y);
-		if (is_in_wall_chunck(map, pos) == 0)
-			return (value);
-		i++;
-	}
-	i = ceil(player_pos.y / 100);
-	while (i < ft_dbstrlen(map))
-	{
-		value = ((double)i * 100.0 - player_pos.y) / cos(radians);
-		pos.x = (int)(value * cos(radians) + player_pos.x);
-		pos.y = (int)(value * sin(radians) + player_pos.y);
-		if (is_in_wall_chunck(map, pos) == 0)
-			return (value);
-	}
-	return (1.0);
-}
-
-t_raycast_info calcul_draw_line(double degres, t_data data)
-{
-	double			radians;
-	double			i;
-	t_raycast_info	collision_info;
-
-	radians = PI * degres / 180;
-	i = creat_i_value(radians, data.player.coordonate, data.map);
-	collision_info = all_info_raycast_collision(data, radians, i);
-	collision_info.side = side_collision(data, collision_info);
-	return (collision_info);
-//	my_mlx_pixel_put(&img, (int)ceil(pos.x / (LEN_CHUNCK / LEN_CHUNCK_MAP)), (int)ceil(pos.y / (LEN_CHUNCK / LEN_CHUNCK_MAP)), 0x00FFFF00);
-}
-
-t_raycast_info *raycasting_minimap(t_data data)
-{
-	double			degres;
 	t_raycast_info	*raycast_info;
-	int 	i;
+	double			*length;
+	int 			x;
+	t_camera		camera;
+	double 			plan_length;
 
-	i = 0;
-	raycast_info = malloc(sizeof(t_raycast_info) * (int)((double)FOV / DEGRES_PRECISION + 2));
-	degres = (float)(data.player.rotation) - FOV / 2.0;
-	raycast_info[(int)((double)FOV / DEGRES_PRECISION + 1)].distance = -1;
-	while (degres < (float)(data.player.rotation) + FOV / 2.0)
+	plan_length = tan((FOV * PI / 180.0) / 2);
+	camera.pos_x = data.player.coordonatef.x;
+	camera.pos_y = data.player.coordonatef.y;
+	camera.dir_x = cos(data.player.rotation * (PI / 180));
+	camera.dir_y = sin(data.player.rotation * (PI / 180));
+	camera.plane_x = -camera.dir_x * plan_length;
+	camera.plane_y = -camera.dir_y * plan_length;
+//	(void) img;
+//	(void) data;
+//	(void) camera;
+	x = 0;
+	raycast_info = malloc(sizeof(t_raycast_info) * (WITH_SCREEN + 2));
+	length = malloc(sizeof(double) * (WITH_SCREEN + 1));
+	raycast_info[WITH_SCREEN].distance = -1;
+	while (x < WITH_SCREEN)
 	{
-		raycast_info[i++] = calcul_draw_line(degres, data);
-		degres += DEGRES_PRECISION;
+		if (x == 1766)
+			printf("f");
+		length[x] = calcule_raycast(data, img, x, camera);
+		x++;
 	}
-	return (raycast_info);
+	return (length);
 }
