@@ -95,6 +95,7 @@ typedef struct s_each_wall_pos
 
 typedef struct s_blocK_wall
 {
+	char			side;
 	double			start_distance;
 	double			end_distance;
 	double			wall_len;
@@ -105,7 +106,6 @@ typedef struct s_blocK_wall
 	int				height_end;
 	t_coordonate	first_inpact;
 	t_coordonate	last_inpact;
-	t_each_wall_pos	*each_wall;
 
 } t_blocK_wall;
 
@@ -142,7 +142,7 @@ int					show_debug_map(t_all *all);
 
 //Raycasting
 
-t_raycast_info		*raycasting_minimap(t_data data, t_img img);
+t_raycast_info		*raycasting_minimap(t_data data);
 
 //show 3dmap
 

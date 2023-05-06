@@ -21,10 +21,7 @@ void	show_bottom_top_line(t_img img, t_blocK_wall all_wall, int color)
 	double			radian;
 	int				i;
 	t_coordonate	pos;
-	int				j;
-	int				y2;
 
-	j = 0;
 	i = 0;
 	hgt_scrn = HEIGHT_SCREEN;
 	len_line = sqrt(pow((hgt_scrn - all_wall.height_start) / 2
@@ -37,21 +34,7 @@ void	show_bottom_top_line(t_img img, t_blocK_wall all_wall, int color)
 	{
 		pos.x = i * cos(radian) + all_wall.pos_x_start;
 		pos.y = i * sin(radian) + (hgt_scrn - all_wall.height_start) / 2;
-		if ((int)(all_wall.each_wall[j].pos_it_start * len_line / all_wall.wall_len) == i)
-		{
-			y2 = pos.y = i * sin(radian) + (hgt_scrn - all_wall.height_start) / 2;
-			while (y2 < i * sin(-radian) + (hgt_scrn - (hgt_scrn - all_wall.height_start) / 2))
-				my_mlx_pixel_put(&img, pos.x, y2++, color);
-		}
-		else if ((int)(all_wall.each_wall[j].pos_it_end * len_line / all_wall.wall_len) == i)
-		{
-			y2 = pos.y = i * sin(radian) + (hgt_scrn - all_wall.height_start) / 2;
-			while (y2 < i * sin(-radian) + (hgt_scrn - (hgt_scrn - all_wall.height_start) / 2))
-				my_mlx_pixel_put(&img, pos.x, y2++, color);
-			j++;
-		}
 		my_mlx_pixel_put(&img, pos.x, pos.y, color);
-		pos.x = i * cos(-radian) + all_wall.pos_x_start;
 		pos.y = i++ * sin(-radian) + (hgt_scrn - (hgt_scrn - all_wall.height_start) / 2);
 		my_mlx_pixel_put(&img, pos.x, pos.y, color);
 	}
@@ -61,15 +44,20 @@ void	show_screen(t_blocK_wall *all_wall, t_img img)
 {
 	int i;
 	int color;
+	int color2;
 
 	color = 0x0000FF;
+	color2 = 0x00FF00;
 
 	i = 0;
 	while (all_wall[i].wall_len != -1.0)
 	{
 		show_right_left_line(img, all_wall[i].pos_x_start, all_wall[i].height_start, color);
 		show_right_left_line(img, all_wall[i].pos_x_end - 1, all_wall[i].height_end, color);
-		show_bottom_top_line(img, all_wall[i], color);
+		if (i == 2)
+			show_bottom_top_line(img, all_wall[i], color2);
+		else
+			show_bottom_top_line(img, all_wall[i], color);
 		i++;
 	}
 }
