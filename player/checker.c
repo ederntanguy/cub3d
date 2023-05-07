@@ -5,8 +5,8 @@ int	check_x(t_coordonatef possible, t_data data)
 	int	x;
 	int	y;
 
-	x = (int)(possible.x < 0 ? (possible.x - 0.5) : (possible.x + 0.5));
-	y = (int)(possible.y < 0 ? (possible.y - 0.5) : (possible.y + 0.5));
+	x = roundFloat(possible.x);
+	y = roundFloat(possible.y);
 	if (x % LEN_CHUNCK < PlAYER_SIZE && x % LEN_CHUNCK != 0 && data.map[y / LEN_CHUNCK][x / LEN_CHUNCK - 1])
 	{
 		printf("COLLISION MUR GAUCHE\n");

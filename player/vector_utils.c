@@ -19,3 +19,11 @@ t_coordonatef	add_vector(t_coordonatef vector1, t_coordonatef vector2)
 	new.y = vector1.y + vector2.y;
 	return (new);
 }
+
+int roundFloat(float value)
+{ 
+    int	rounded;
+
+	rounded = (int)(value + 0.5);
+    return (rounded);
+}
