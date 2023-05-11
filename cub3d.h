@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/07 11:54:20 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/11 06:52:35 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,7 @@ t_data				setup_data(char **argv);
 
 //Vector Utils
 
-int					check_x(t_coordonatef possible, t_data data);
-int 				check_y(t_coordonatef possible, t_data data);
-int					check_posible_position(t_coordonatef possible, t_data data);
+t_coordonatef		check_posible_position(t_coordonatef possible, t_data data);
 t_coordonatef		rotate_vector(t_coordonatef vector, int angle);
 t_coordonatef		add_vector(t_coordonatef vector1, t_coordonatef vector2);
 int 				roundFloat(float value);
