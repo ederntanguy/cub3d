@@ -16,7 +16,7 @@
 
 # define WITH_SCREEN 1920
 # define HEIGHT_SCREEN 1080
-# define LEN_CHUNCK 1
+# define LEN_CHUNCK 100
 # define LEN_CHUNCK_MAP 0.01
 # define PI 3.14159265359
 # define FOV 100.0
