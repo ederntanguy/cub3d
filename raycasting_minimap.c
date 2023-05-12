@@ -49,7 +49,6 @@ void	make_dda(t_ray *ray, char **map)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-        printf("%d %d\n", ray->map_y, ray->map_x);
 		if (map[ray->map_y][ray->map_x] == '1')
 			hit = 1;
 	}
@@ -98,7 +97,5 @@ double *raycasting_minimap(t_data data, t_img img)
 		length[x] = calcule_raycast(data, img, x, camera);
 		x++;
 	}
-    printf("laaaa\n");
-
 	return (length);
 }

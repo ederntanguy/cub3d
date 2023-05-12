@@ -56,9 +56,15 @@ typedef struct s_coordonate
 	int	y;
 }	t_coordonate;
 
+typedef struct s_coordonatef
+{
+    double	x;
+    double	y;
+} t_coordonatef;
+
 typedef struct s_player
 {
-	t_coordonate	coordonatef;
+	t_coordonatef	coordonatef;
 	int				rotation;
 }	t_player;
 
@@ -68,11 +74,6 @@ typedef struct s_data
 	t_player	player;
 } t_data;
 
-typedef struct s_coordonatef
-{
-	double	x;
-	double	y;
-} t_coordonatef;
 
 typedef struct s_raycast_info
 {
@@ -149,13 +150,16 @@ t_data				setup_data(char **argv);
 
 //Vector Utils
 
-t_coordonate		rotate_vector(t_coordonate vector, t_coordonate position, int angle);
-t_coordonate		add_vector(t_coordonate vector1, t_coordonate vector2);
+t_coordonatef	    rotate_vector(t_coordonatef vector, int angle);
+t_coordonatef	    add_vector(t_coordonatef vector1, t_coordonatef vector2);
+void	            rotate_player(t_all *all, int rotation);
+int					roundFloat(float value);
+
 
 //Input
 
 int					input_handling(int keycode, t_all *all);
-void				move_up(t_data	*data);
+void				move(t_data	*data, double x, double y);
 int					show_player_mini_map(t_img img, t_player player);
 t_player			make_player(char **map);
 
@@ -171,5 +175,10 @@ double				*raycasting_minimap(t_data data, t_img img);
 
 t_blocK_wall		*creat_wall_array(t_data data, t_img img, t_raycast_info *raycast_info);
 void 				show_screen(double *all_wall, t_img img);
+
+// checkpos
+
+t_coordonatef		check_posible_position(t_coordonatef possible, t_data data);
+
 
 #endif
