@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/11 06:52:35 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/12 10:18:25 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define LEN_CHUNCK_MAP 20 * WITH_SCREEN / 1920
 # define PI 3.14159265359
 # define FOV 90.0
-# define LEN_RAYCAST 500000.0
+# define LEN_RAYCAST 500.0
 # define PlAYER_SIZE 10
 # define PLAYER_SPEED 10
 
