@@ -34,10 +34,10 @@ void	show_floor(t_img img, int color)
 	}
 }
 
-void show_roof_floor(t_img img, t_data data)
+void show_roof_floor(t_img img, t_textures textures)
 {
-	data.floor_color = 0xFF0000;
-	data.roof_color = 0xFFFF00;
-	show_floor(img, data.floor_color);
-	show_roof(img, data.roof_color);
+	textures.floor = 0xFF0000;
+	textures.roof = 0xFFFF00;
+	show_floor(img, textures.floor);
+	show_roof(img, textures.roof);
 }

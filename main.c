@@ -23,40 +23,22 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-char	**parsing_map(char *argv)
-{
-	char	**map;
-	int		fd;
-	char	*tmp;
-
-	fd = open(argv, O_RDONLY);
-	map = malloc(sizeof(char *) * 1);
-	map[0] = 0;
-	tmp = get_next_line(fd);
-	while (tmp)
-	{
-		map = ft_realloc_dbchar(map, tmp);
-		tmp = get_next_line(fd);
-	}
-	return (map);
-}
-
 int	main(int argc, char **argv)
 {
 	t_window	window;
 	t_data		data;
 	t_all 		all;
+	t_textures	textures;
 
 	(void) argc;
-	data = setup_data(argv);
 	setup_mlx(&window);
-	data.map = parsing_map(argv[1]);
-	data.player = make_player(data.map);
+	if (!setup_data(argv, &textures, &data, &window))
+		return (0);
 	all.data = &data;
+	all.textures = textures;
 	all.window = &window;
 	show_debug_map(&all);
 	mlx_hook(window.win, 2, 1L<<0, input_handling, &all);
-//	mlx_loop_hook(window.mlx, show_debug_map, &all);
 	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, NULL);
 	mlx_loop(window.mlx);
 }

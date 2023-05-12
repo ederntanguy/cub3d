@@ -51,6 +51,15 @@ typedef struct s_img {
 	int		endian;
 }				t_img;
 
+typedef struct s_textures {
+	t_img	north;
+	t_img	south;
+	t_img	east;
+	t_img	west;
+	int		floor;
+	int		roof;
+}	t_textures;
+
 typedef struct s_coordonate
 {
 	int	x;
@@ -71,8 +80,6 @@ typedef struct s_player
 
 typedef struct s_data
 {
-	int 		roof_color;
-	int 		floor_color;
 	char		**map;
 	t_player	player;
 } t_data;
@@ -112,6 +119,7 @@ typedef struct s_all
 {
 	t_data		*data;
 	t_window	*window;
+	t_textures	textures;
 } t_all;
 
 typedef struct s_each_wall_pos
@@ -150,12 +158,13 @@ int					quit(void *a);
 
 //Parcing
 
-char				**parsing_map(char *argv);
+char				**parsing_map(int fd);
 
 //Setup
 
 void				setup_mlx(t_window *window);
-t_data				setup_data(char **argv);
+int					setup_textures(int fd, t_textures *textures, t_window *window);
+int					setup_data(char **argv, t_textures *textures, t_data *data, t_window *window);
 
 //Vector Utils
 
@@ -189,6 +198,6 @@ void 				show_screen(t_raycast_info *ray_info, t_img img);
 t_coordonatef		check_posible_position(t_coordonatef possible, t_data data);
 
 // display
-void				show_roof_floor(t_img img, t_data data);
+void				show_roof_floor(t_img img, t_textures textures);
 
 #endif

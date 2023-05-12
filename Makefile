@@ -8,7 +8,7 @@ LIBFT		=	 ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.
 
 SRCS		=	main.c exit.c player.c raycasting_minimap.c
 SRCS2		=	movement.c vector_utils.c input.c checker.c
-SRCS3		=	setup.c
+SRCS3		=	setup.c setup_textures.c
 SRCS4		=	debug.c
 SRCS5		=	display.c show_minimap.c show_player.c roof_floor_display.c
 
