@@ -81,8 +81,8 @@ double *raycasting_minimap(t_data data, t_img img)
 	double 			plan_length;
 
 	plan_length = tan((FOV * PI / 180.0) / 2);
-	camera.pos_x = data.player.coordonatef.x / 100.0;
-	camera.pos_y = data.player.coordonatef.y / 100.0;
+	camera.pos_x = (data.player.coordonatef.x + PlAYER_SIZE / 2) / 100.0;
+	camera.pos_y = (data.player.coordonatef.y + PlAYER_SIZE / 2)/ 100.0;
 	camera.dir_x = cos(data.player.rotation * (PI / 180));
 	camera.dir_y = sin(data.player.rotation * (PI / 180));
     camera.plane_x = -camera.dir_y * plan_length;

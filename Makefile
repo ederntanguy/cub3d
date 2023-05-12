@@ -14,7 +14,7 @@ SRCS5		=	display.c show_minimap.c show_player.c roof_floor_display.c
 
 OBJDIR_SRCS		=	obj
 OBJDIR_SRCS2	=	libft/obj
-OBJDIR_SRCS3	=	player/obj
+OBJDIR_SRCS3	=	player/objé
 OBJDIR_SRCS4	=	setup/obj
 OBJDIR_SRCS5	=	debug/obj
 OBJDIR_SRCS6	=	display/obj

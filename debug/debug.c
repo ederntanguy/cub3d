@@ -3,7 +3,6 @@
 int	show_debug_map(t_all *all)
 {
 	t_img			img;
-//	t_blocK_wall	*all_wall;
 	double			*raycast_info;
 
 	img.img = mlx_new_image(all->window->mlx, 1920, 1080);
@@ -13,7 +12,6 @@ int	show_debug_map(t_all *all)
 //	show_player_mini_map(img, all->data->player);
 	show_roof_floor(img, *(all->data));
 	raycast_info = raycasting_minimap(*(all->data), img);
-//	all_wall = creat_wall_array(*(all->data), img, raycast_info);
 	show_screen(raycast_info, img);
 	mlx_put_image_to_window(all->window->mlx, all->window->win, img.img, 0, 0);
 	return (0);
