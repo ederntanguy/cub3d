@@ -60,3 +60,4 @@ int	main(int argc, char **argv)
 	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, NULL);
 	mlx_loop(window.mlx);
 }
+
