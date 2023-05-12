@@ -81,8 +81,8 @@ typedef struct s_data
 typedef struct s_raycast_info
 {
 	char			side;
-	float			distance;
-	t_coordonate	pos;
+	double			distance;
+	double			pos;
 } t_raycast_info;
 
 typedef struct s_camera{
@@ -178,12 +178,11 @@ int					show_debug_map(t_all *all);
 
 //Raycasting
 
-double				*raycasting_minimap(t_data data, t_img img);
+t_raycast_info		*raycasting_minimap(t_data data);
 
 //show 3dmap
 
-t_blocK_wall		*creat_wall_array(t_data data, t_img img, t_raycast_info *raycast_info);
-void 				show_screen(double *all_wall, t_img img);
+void 				show_screen(t_raycast_info *ray_info, t_img img);
 
 // checkpos
 
