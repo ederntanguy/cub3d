@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 14:50:20 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:43:07 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define PI 3.14159265359
 # define FOV 100.0
 # define DEGRES_PRECISION 0.1
-# define LEN_RAYCAST 500000.0
+# define LEN_RAYCAST 500000000.0
 # define PlAYER_SIZE 10
 # define PLAYER_SPEED 10
 
@@ -131,6 +131,17 @@ typedef struct s_blocK_wall
 	t_coordonate	last_inpact;
 
 } t_blocK_wall;
+typedef struct s_all
+{
+	t_data		data;
+	t_window	window;
+}	t_all;
+
+typedef struct s_impact_info
+{
+	t_data		data;
+	t_window	window;
+}	t_impact_info;
 
 void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
 int					count_nb_chunck(char **map);

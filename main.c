@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:18 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/12 11:38:12 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:44:10 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(int argc, char **argv)
 {
 	t_window	window;
 	t_data		data;
+	t_all 		all;
 	t_all 		all;
 
 	(void) argc;
