@@ -6,10 +6,10 @@ int	show_player_mini_map(t_img img, t_player player)
 	int 		y;
 	t_coordonate codnt_player_mini;
 
-	codnt_player_mini.x = player.coordonate.x / (LEN_CHUNCK / LEN_CHUNCK_MAP);
-	codnt_player_mini.y = player.coordonate.y / (LEN_CHUNCK / LEN_CHUNCK_MAP);
-	y = codnt_player_mini.y - LEN_CHUNCK_MAP / 2 + PlAYER_SIZE;
-	while (y < codnt_player_mini.y + LEN_CHUNCK_MAP / 2  + PlAYER_SIZE)
+	codnt_player_mini.x = player.coordonatef.x;
+	codnt_player_mini.y = player.coordonatef.y;
+	y = codnt_player_mini.y - LEN_CHUNCK_MAP / 2;
+	while (y < codnt_player_mini.y + LEN_CHUNCK_MAP / 2)
 	{
 		x = codnt_player_mini.x - LEN_CHUNCK_MAP / 2  + PlAYER_SIZE;
 		while (x < codnt_player_mini.x + LEN_CHUNCK_MAP / 2  + PlAYER_SIZE)

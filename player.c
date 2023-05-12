@@ -28,8 +28,8 @@ t_player	make_player(char **map)
 			|| map[chunck_pos.y][chunck_pos.x] == 'E'
 			|| map[chunck_pos.y][chunck_pos.x] == 'W')
 		{
-			player.coordonate.x = chunck_pos.x * LEN_CHUNCK;
-			player.coordonate.y = chunck_pos.y * LEN_CHUNCK;
+			player.coordonatef.x = chunck_pos.x * LEN_CHUNCK;
+			player.coordonatef.y = chunck_pos.y * LEN_CHUNCK;
 			if (map[chunck_pos.y][chunck_pos.x] == 'N')
 				player.rotation = 270;
 			else if (map[chunck_pos.y][chunck_pos.x] == 'E')
@@ -42,6 +42,6 @@ t_player	make_player(char **map)
 		}
 		chunck++;
 	}
-	player.coordonate.x = 0;
+	player.coordonatef.x = 0;
 	return (player);
 }
