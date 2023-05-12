@@ -24,14 +24,15 @@ int	make_color(char *str)
 	tmp = 0;
 	while (*str)
 	{
-		if (*str == ',')
+		if (*str == ',' || *str == '\n')
 		{
+			ret *= 256;
 			ret += tmp;
 			tmp = 0;
 		}
 		else
 		{
-			tmp *= 16;
+			tmp *= 10;
 			tmp += *str - '0';
 		}
 		str++;

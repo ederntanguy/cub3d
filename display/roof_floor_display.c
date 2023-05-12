@@ -36,8 +36,6 @@ void	show_floor(t_img img, int color)
 
 void show_roof_floor(t_img img, t_textures textures)
 {
-	textures.floor = 0xFF0000;
-	textures.roof = 0xFFFF00;
 	show_floor(img, textures.floor);
 	show_roof(img, textures.roof);
 }
