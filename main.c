@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:18 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 14:40:40 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:38:12 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	main(int argc, char **argv)
 	all.window = &window;
 	show_debug_map(&all);
 	mlx_key_hook(window.win, input_handling, &all);
-//	mlx_loop_hook(window.mlx, show_debug_map, &all);
 	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, NULL);
 	mlx_loop(window.mlx);
 }

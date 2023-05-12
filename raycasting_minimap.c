@@ -85,8 +85,8 @@ double *raycasting_minimap(t_data data, t_img img)
 	camera.pos_y = data.player.coordonatef.y;
 	camera.dir_x = cos(data.player.rotation * (PI / 180));
 	camera.dir_y = sin(data.player.rotation * (PI / 180));
-	camera.plane_x = -camera.dir_x * plan_length;
-	camera.plane_y = -camera.dir_y * plan_length;
+	camera.plane_x = -camera.dir_y * plan_length;
+	camera.plane_y = camera.dir_x * plan_length;
 //	(void) img;
 //	(void) data;
 //	(void) camera;
