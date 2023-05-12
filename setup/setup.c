@@ -1,12 +1,31 @@
 #include "../cub3d.h"
 
-t_data	setup_data(char **argv)
+char	**parsing_map(int fd)
 {
-	t_data	data;
+	char	**map;
+	char	*tmp;
 
-	data.map = parsing_map(argv[1]);
-	data.player = make_player(data.map);
-	return (data);
+	map = malloc(sizeof(char *) * 1);
+	map[0] = 0;
+	tmp = get_next_line(fd);
+	while (tmp)
+	{
+		map = ft_realloc_dbchar(map, tmp);
+		tmp = get_next_line(fd);
+	}
+	return (map);
+}
+
+int	setup_data(char **argv, t_textures *textures, t_data *data, t_window *window)
+{
+	int	fd;
+
+	fd = open(argv[1], O_RDONLY);
+	if (setup_textures(fd, textures, window))
+		return (0);
+	data->map = parsing_map(fd);
+	data->player = make_player(data->map);
+	return (1);
 }
 
 void	setup_mlx(t_window*window)

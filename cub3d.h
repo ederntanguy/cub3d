@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/12 15:18:47 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/12 18:02:06 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,15 @@ typedef struct s_img {
 	int		line_length;
 	int		endian;
 }				t_img;
+
+typedef struct s_textures {
+	t_img	north;
+	t_img	south;
+	t_img	east;
+	t_img	west;
+	int		floor;
+	int		roof;
+}	t_textures;
 
 typedef struct s_coordonate
 {
@@ -112,6 +121,7 @@ typedef struct s_all
 {
 	t_data		*data;
 	t_window	*window;
+	t_textures	textures;
 } t_all;
 
 typedef struct s_each_wall_pos
@@ -148,14 +158,12 @@ void				show_map(t_img	img, char **map);
 void				my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int					quit(void *a);
 
-//Parcing
-
-char				**parsing_map(char *argv);
-
 //Setup
 
 void				setup_mlx(t_window *window);
-t_data				setup_data(char **argv);
+int					setup_textures(int fd, t_textures *textures, t_window *window);
+int					setup_data(char **argv, t_textures *textures, t_data *data, t_window *window);
+
 
 //Vector Utils
 

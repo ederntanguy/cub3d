@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:18 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 14:40:40 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/12 18:06:56 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,18 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-char	**parsing_map(char *argv)
-{
-	char	**map;
-	int		fd;
-	char	*tmp;
-
-	fd = open(argv, O_RDONLY);
-	map = malloc(sizeof(char *) * 1);
-	map[0] = 0;
-	tmp = get_next_line(fd);
-	while (tmp)
-	{
-		map = ft_realloc_dbchar(map, tmp);
-		tmp = get_next_line(fd);
-	}
-	return (map);
-}
-
 int	main(int argc, char **argv)
 {
 	t_window	window;
 	t_data		data;
 	t_all 		all;
+	t_textures	textures;
 
-	(void) argc;
-	data = setup_data(argv);
 	setup_mlx(&window);
-	data.map = parsing_map(argv[1]);
-	data.player = make_player(data.map);
+	if (setup_data(argv, &textures, &data, &window))
+		return (0);
 	all.data = &data;
+	all.textures = &textures;
 	all.window = &window;
 	show_debug_map(&all);
 	mlx_key_hook(window.win, input_handling, &all);
@@ -60,4 +42,3 @@ int	main(int argc, char **argv)
 	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, NULL);
 	mlx_loop(window.mlx);
 }
-
