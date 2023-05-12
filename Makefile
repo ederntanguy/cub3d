@@ -13,7 +13,7 @@ SRCS4		=	debug.c
 
 OBJDIR_SRCS		=	obj
 OBJDIR_SRCS2	=	libft/obj
-OBJDIR_SRCS3	=	player/obj
+OBJDIR_SRCS3	=	player/objé
 OBJDIR_SRCS4	=	setup/obj
 OBJDIR_SRCS5	=	debug/obj
 
@@ -26,7 +26,7 @@ OBJS		=	\
 				
 				
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra -g -O3
+CFLAGS		=	-Wall -Wextra -O3
 LIBS		=	-Lmlx -lmlx -lXext -lX11 -lm
 RM			=	rm -f
 

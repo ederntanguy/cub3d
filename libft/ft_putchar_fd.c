@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:19:52 by etanguy           #+#    #+#             */
-/*   Updated: 2022/11/10 12:17:33 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/05/12 14:43:29 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	if (write(fd, &c, 1))
+		return ;
 }

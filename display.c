@@ -9,6 +9,7 @@ void	show_right_left_line(t_img img, int pos_x, int height, int color)
 	y = (hgt_scrn - height) / 2;
 	while (y < hgt_scrn - (hgt_scrn - height) / 2)
 	{
+		//ft_putnbr_fd(y, 1);
 		my_mlx_pixel_put(&img, pos_x, y, color);
 		y++;
 	}
@@ -44,14 +45,17 @@ void	show_screen(double *all_wall, t_img img)
 {
 	int i;
 	int color;
+	int	temp;
 
 	color = 0x0000FF;
 
 	i = 0;
 	while (i <  1920)
 	{
-
-		show_right_left_line(img, i, HEIGHT_SCREEN / all_wall[i], color);
+		temp = HEIGHT_SCREEN / all_wall[i];
+		if (temp <= 0)
+			temp = 257;
+		show_right_left_line(img, i, temp, color);
 //		show_right_left_line(img, all_wall[i].pos_x_end - 1, all_wall[i].height_end, color);
 //		if (i == 2)
 //			show_bottom_top_line(img, all_wall[i], color2);

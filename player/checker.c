@@ -3,9 +3,9 @@
 int	check_corners(int x, int y, t_data data)
 {
 	if (data.map[y / LEN_CHUNCK][x / LEN_CHUNCK] == '1'
-		|| data.map[(y + PlAYER_SIZE) / LEN_CHUNCK][x / LEN_CHUNCK] == '1'
-		|| data.map[(y + PlAYER_SIZE) / LEN_CHUNCK][(x + PlAYER_SIZE) / LEN_CHUNCK] == '1'
-		|| data.map[y / LEN_CHUNCK][(x + PlAYER_SIZE) / LEN_CHUNCK] == '1')
+		|| data.map[(y + PlAYER_SIZE + COLLISION_EXTRA_BORDER) / LEN_CHUNCK][x / LEN_CHUNCK] == '1'
+		|| data.map[(y + PlAYER_SIZE + COLLISION_EXTRA_BORDER) / LEN_CHUNCK][(x + PlAYER_SIZE + COLLISION_EXTRA_BORDER) / LEN_CHUNCK] == '1'
+		|| data.map[y / LEN_CHUNCK][(x + PlAYER_SIZE + COLLISION_EXTRA_BORDER) / LEN_CHUNCK] == '1')
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/12 11:43:20 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:18:47 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define DEGRES_PRECISION 0.1
 # define LEN_RAYCAST 500000000.0
 # define PlAYER_SIZE 10
+# define COLLISION_EXTRA_BORDER 30
 # define PLAYER_SPEED 10
 
 # include "libft/get_next_line.h"
@@ -132,11 +133,6 @@ typedef struct s_blocK_wall
 	t_coordonate	last_inpact;
 
 } t_blocK_wall;
-typedef struct s_all
-{
-	t_data		data;
-	t_window	window;
-}	t_all;
 
 typedef struct s_impact_info
 {
