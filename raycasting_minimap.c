@@ -81,23 +81,19 @@ double *raycasting_minimap(t_data data, t_img img)
 	double 			plan_length;
 
 	plan_length = tan((FOV * PI / 180.0) / 2);
-	camera.pos_x = data.player.coordonatef.x;
-	camera.pos_y = data.player.coordonatef.y;
+	camera.pos_x = data.player.coordonatef.x / 100.0;
+	camera.pos_y = data.player.coordonatef.y / 100.0;
 	camera.dir_x = cos(data.player.rotation * (PI / 180));
 	camera.dir_y = sin(data.player.rotation * (PI / 180));
-	camera.plane_x = -camera.dir_y * plan_length;
-	camera.plane_y = camera.dir_x * plan_length;
-//	(void) img;
-//	(void) data;
-//	(void) camera;
+    camera.plane_x = -camera.dir_y * plan_length;
+    camera.plane_y = camera.dir_x * plan_length;
+
 	x = 0;
 	raycast_info = malloc(sizeof(t_raycast_info) * (WITH_SCREEN + 2));
 	length = malloc(sizeof(double) * (WITH_SCREEN + 1));
 	raycast_info[WITH_SCREEN].distance = -1;
 	while (x < WITH_SCREEN)
 	{
-		if (x == 1766)
-			printf("f");
 		length[x] = calcule_raycast(data, img, x, camera);
 		x++;
 	}
