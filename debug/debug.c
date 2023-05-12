@@ -11,6 +11,7 @@ int	show_debug_map(t_all *all)
 								 &img.endian);
 //	show_map(img, all->data->map);
 //	show_player_mini_map(img, all->data->player);
+	show_roof_floor(img, *(all->data));
 	raycast_info = raycasting_minimap(*(all->data), img);
 //	all_wall = creat_wall_array(*(all->data), img, raycast_info);
 	show_screen(raycast_info, img);

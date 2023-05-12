@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int	show_player_mini_map(t_img img, t_player player)
 {

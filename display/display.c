@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	show_right_left_line(t_img img, int pos_x, int height, int color)
 {

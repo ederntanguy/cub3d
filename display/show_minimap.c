@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	calcule_coordonate_chunck(int chunck, int *x, int *y, char **map)
 {

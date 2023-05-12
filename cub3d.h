@@ -70,6 +70,8 @@ typedef struct s_player
 
 typedef struct s_data
 {
+	int 		roof_color;
+	int 		floor_color;
 	char		**map;
 	t_player	player;
 } t_data;
@@ -180,5 +182,7 @@ void 				show_screen(double *all_wall, t_img img);
 
 t_coordonatef		check_posible_position(t_coordonatef possible, t_data data);
 
+// display
+void				show_roof_floor(t_img img, t_data data);
 
 #endif
