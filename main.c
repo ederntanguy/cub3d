@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:18 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/11 00:35:34 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:10:06 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (!(x >= 0 && x <= WITH_SCREEN && y >= 0 && y <= LENGTH_SCREEN))
+	if (!(x >= 0 && x <= WITH_SCREEN && y >= 0 && y <= HEIGHT_SCREEN))
 		return ;
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
@@ -52,9 +52,9 @@ int	main(int argc, char **argv)
 	setup_mlx(&window);
 	data.map = parsing_map(argv[1]);
 	data.player = make_player(data.map);
-	show_debug_map(&data, &window);
-	all.data = data;
-	all.window = window;
+	all.data = &data;
+	all.window = &window;
+	show_debug_map(&all);
 	mlx_hook(window.win, 2, 1L<<0, input_handling, &all);
 	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, NULL);
 	mlx_loop(window.mlx);
