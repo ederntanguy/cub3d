@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:18 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/12 12:05:53 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:10:06 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,15 @@ int	main(int argc, char **argv)
 	t_window	window;
 	t_data		data;
 	t_all 		all;
-	t_all 		all;
 
 	(void) argc;
 	data = setup_data(argv);
 	setup_mlx(&window);
 	data.map = parsing_map(argv[1]);
 	data.player = make_player(data.map);
-	show_debug_map(&data, &window);
-	all.data = data;
-	all.window = window;
+	all.data = &data;
+	all.window = &window;
+	show_debug_map(&all);
 	mlx_hook(window.win, 2, 1L<<0, input_handling, &all);
 	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, NULL);
 	mlx_loop(window.mlx);

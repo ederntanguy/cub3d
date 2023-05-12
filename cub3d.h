@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/12 11:59:39 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:08:01 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,17 +141,6 @@ typedef struct s_blocK_wall
 	t_coordonate	last_inpact;
 
 } t_blocK_wall;
-typedef struct s_all
-{
-	t_data		data;
-	t_window	window;
-}	t_all;
-
-typedef struct s_impact_info
-{
-	t_data		data;
-	t_window	window;
-}	t_impact_info;
 
 void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
 int					count_nb_chunck(char **map);
@@ -181,7 +170,6 @@ int					input_handling(int keycode, t_all *all);
 void				move(t_data	*data, double x, double y);
 int					show_player_mini_map(t_img img, t_player player);
 t_player			make_player(char **map);
-void				raycasting_minimap(t_data data, t_img img);
 void				rotate_player(t_all *all, int rotation);
 
 //Debug
