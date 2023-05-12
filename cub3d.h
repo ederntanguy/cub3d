@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/11 06:52:35 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:29:53 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define FOV 90.0
 # define LEN_RAYCAST 500000.0
 # define PlAYER_SIZE 10
-# define PLAYER_SPEED 10
+# define PLAYER_SPEED 100
 
 # include "libft/get_next_line.h"
 # include "libft/libft.h"

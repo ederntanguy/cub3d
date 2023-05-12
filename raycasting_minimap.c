@@ -36,6 +36,6 @@ void raycasting_minimap(t_data data, t_img img)
 	while (degres < (float)(data.player.rotation) + FOV / 2.0)
 	{
 		calcul_draw_line(degres, data, img);
-		degres+=1;
+		degres+=0.05;
 	}
 }
