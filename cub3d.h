@@ -121,7 +121,8 @@ typedef struct s_all
 {
 	t_data		*data;
 	t_window	*window;
-	t_textures	textures;
+	t_textures	*textures;
+	t_img		*img;
 } t_all;
 
 typedef struct s_each_wall_pos

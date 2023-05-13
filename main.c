@@ -29,15 +29,19 @@ int	main(int argc, char **argv)
 	t_data		data;
 	t_all 		all;
 	t_textures	textures;
+	t_img		img;
 
 	(void) argc;
 	setup_mlx(&window);
 	if (!setup_data(argv, &textures, &data, &window))
 		return (0);
 	all.data = &data;
-	all.textures = textures;
+	all.textures = &textures;
 	all.window = &window;
-
+	img.img = mlx_new_image(window.mlx, 1920, 1080);
+	img.addr = (unsigned char *)mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+												  &img.endian);
+	all.img = &img;
 	show_debug_map(&all);
 	mlx_hook(window.win, 2, 1L<<0, input_handling, &all);
 	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, &all);
