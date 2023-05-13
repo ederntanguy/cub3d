@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	t_img		img;
 
 	if (argc != 2)
-		return (ft_putstr_fd("Error : Invalide number of parameter\n", 2), 0);	setup_mlx(&window);
+		return (ft_putstr_fd("Error : Invalide number of parameter\n", 2), 0);
 	setup_mlx(&window);
 	if (!setup_data(argv, &textures, &data, &window))
 		return (0);
