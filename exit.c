@@ -15,10 +15,10 @@
 int	quit(t_all *all)
 {
 	mlx_destroy_image(all->window->mlx, all->img->img);
-//	mlx_destroy_image(all->window->mlx, &(all->textures->east.img));
-//	mlx_destroy_image(all->window->mlx, &(all->textures->west.img));
-//	mlx_destroy_image(all->window->mlx, &(all->textures->south.img));
-//	mlx_destroy_image(all->window->mlx, &(all->textures->north.img));
+	mlx_destroy_image(all->window->mlx, all->textures->east.img);
+	mlx_destroy_image(all->window->mlx, all->textures->west.img);
+	mlx_destroy_image(all->window->mlx, all->textures->south.img);
+	mlx_destroy_image(all->window->mlx, all->textures->north.img);
 	mlx_destroy_window(all->window->mlx, all->window->win);
 	mlx_destroy_display(all->window->mlx);
 	free(all->window->mlx);
