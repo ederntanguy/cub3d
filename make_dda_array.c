@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	init_ray(t_ray *ray, t_camera *camera, double camerax)
+void	init_ray(t_ray *ray, t_camera *camera)
 {
 	ray->map_x = (int)camera->pos_x;
 	ray->map_y = (int)camera->pos_y;
@@ -98,7 +98,7 @@ t_raycast_info	calcule_raycast(t_data data, int x, t_camera camera)
 	camerax = (2.0 * (double)x) / (double)WITH_SCREEN - 1.0;
 	ray.ray_dir_x = camera.dir_x + camera.plane_x * camerax;
 	ray.ray_dir_y = camera.dir_y + camera.plane_y * camerax;
-	init_ray(&ray, &camera, camerax);
+	init_ray(&ray, &camera);
 	ray_info = make_dda(&ray, data.map, camera);
 	return (ray_info);
 }
