@@ -75,15 +75,10 @@ t_raycast_info	make_dda(t_ray *ray, char **map, int x, t_camera camera)
 	}
 	wall_hit_x = camera.pos_x + ray_info.distance * ray->ray_dir_x;
 	wall_hit_y = camera.pos_y +  ray_info.distance * ray->ray_dir_y;
-	if (ray->side == 0) // Si le rayon a touché le côté est ou ouest du mur.
-	{
+	if (ray->side == 0)
 		ray_info.pos = wall_hit_y - floor(wall_hit_y);
-	}
-	else // Si le rayon a touché le côté nord ou sud du mur.
-	{
+	else
 		ray_info.pos = wall_hit_x - floor(wall_hit_x);
-	}
-
 	if (ray_info.pos < 0)
 		ray_info.pos++;
 	return (ray_info);
