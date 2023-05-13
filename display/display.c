@@ -8,7 +8,7 @@ t_img	return_side_texture(char side, t_textures textures)
 		return (textures.south);
 	else if (side == 'E')
 		return (textures.east);
-	else if (side == 'w')
+	else if (side == 'W')
 		return (textures.west);
 	return (textures.east);
 }
@@ -20,9 +20,9 @@ int have_color_value(t_img side_texture, int x, int y)
 
 	pos_color = (y * side_texture.line_length)
 			+ (x * side_texture.bits_per_pixel / 8);
-	color = side_texture.addr[pos_color] * 256 * 256;
+	color = side_texture.addr[pos_color];
 	color += side_texture.addr[pos_color + 1] * 256;
-	color += side_texture.addr[pos_color + 2];
+	color += side_texture.addr[pos_color + 2] * 256 * 256;
 	return (color);
 }
 

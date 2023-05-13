@@ -58,18 +58,18 @@ t_raycast_info	make_dda(t_ray *ray, char **map, int x, t_camera camera)
 	{
 		ray_info.distance = ray->side_dist_x - ray->delta_dist_x;
 		if (ray->step_x > 0)
-			ray_info.side = 'W';
-		else
 			ray_info.side = 'E';
+		else
+			ray_info.side = 'W';
 		ray_info.pos = camera.pos_x - tan((2 * x / (double)WITH_SCREEN - 1) * (FOV * PI / 180.0 / 2.0)) * ray_info.distance;
 	}
 	else
 	{
 		ray_info.distance = ray->side_dist_y - ray->delta_dist_y;
 		if (ray->step_y > 0)
-			ray_info.side = 'S';
-		else
 			ray_info.side = 'N';
+		else
+			ray_info.side = 'S';
 		ray_info.pos = camera.pos_y - (tan((2 * x / (double)WITH_SCREEN - 1) * (FOV * PI / 180.0 / 2.0)) * ray_info.distance);
 	}
 	ray_info.pos = fmod(ray_info.pos, 1.0);
