@@ -61,6 +61,5 @@ int	setup_textures(int fd, t_textures *textures, t_window *window)
 		tmp = get_next_line(fd);
 	}
 	free(tmp);
-	printf("%d \n", textures->south.addr[(9 * textures->south.line_length) + (15 * textures->south.bits_per_pixel / 8)]);
 	return (0);
 }

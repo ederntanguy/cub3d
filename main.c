@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:18 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 14:40:40 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/13 17:19:40 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	main(int argc, char **argv)
 	t_textures	textures;
 	t_img		img;
 
-	(void) argc;
+	if (argc != 2)
+		return (ft_putstr_fd("Error : Invalide number of parameter\n", 2), 0);
 	setup_mlx(&window);
 	if (!setup_data(argv, &textures, &data, &window))
 		return (0);

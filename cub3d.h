@@ -6,7 +6,7 @@
 /*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/12 15:18:47 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/05/13 18:44:38 by gde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ int					quit(t_all *all);
 //Parcing
 
 char				**parsing_map(int fd);
+int					map_validity(char **map);
 
 //Setup
 
