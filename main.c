@@ -37,9 +37,10 @@ int	main(int argc, char **argv)
 	all.data = &data;
 	all.textures = textures;
 	all.window = &window;
+
 	show_debug_map(&all);
 	mlx_hook(window.win, 2, 1L<<0, input_handling, &all);
-	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, NULL);
+	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, &all);
 	mlx_loop(window.mlx);
 }
 

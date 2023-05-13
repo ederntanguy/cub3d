@@ -70,8 +70,8 @@ typedef struct s_coordonate
 
 typedef struct s_coordonatef
 {
-    double	x;
-    double	y;
+	double	x;
+	double	y;
 } t_coordonatef;
 
 typedef struct s_player
@@ -156,7 +156,7 @@ void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
 int					count_nb_chunck(char **map);
 void				show_map(t_img	img, char **map);
 void				my_mlx_pixel_put(t_img *img, int x, int y, int color);
-int					quit(void *a);
+int					quit(t_all *all);
 
 //Parcing
 
