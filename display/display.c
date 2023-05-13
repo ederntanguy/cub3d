@@ -41,26 +41,28 @@ void	show_bottom_top_line(t_img img, t_blocK_wall all_wall, int color)
 	}
 }
 
-void	show_screen(double *all_wall, t_img img)
+void	show_screen(t_raycast_info *ray_info, t_img img)
 {
 	int i;
 	int color;
 	int	temp;
 
-	color = 0x0000FF;
-
 	i = 0;
-	while (i <  1920)
+	color = 0;
+	while (i < 1920)
 	{
-		temp = HEIGHT_SCREEN / all_wall[i];
+		temp = HEIGHT_SCREEN / ray_info[i].distance;
 		if (temp <= 0)
 			temp = 257;
+		if (ray_info[i].side == 'S')
+			color = 0x0000FF;
+		if (ray_info[i].side == 'N')
+			color = 0x00FFFF;
+		if (ray_info[i].side == 'E')
+			color = 0xFFFFFF;
+		if (ray_info[i].side == 'W')
+			color = 0x000000;
 		show_right_left_line(img, i, temp, color);
-//		show_right_left_line(img, all_wall[i].pos_x_end - 1, all_wall[i].height_end, color);
-//		if (i == 2)
-//			show_bottom_top_line(img, all_wall[i], color2);
-//		else
-//			show_bottom_top_line(img, all_wall[i], color);
 		i++;
 	}
 }

@@ -30,11 +30,13 @@ void	init_ray(t_ray *ray, t_camera *camera, double camerax)
 	}
 }
 
-void	make_dda(t_ray *ray, char **map)
+t_raycast_info	make_dda(t_ray *ray, char **map, int x, t_camera camera)
 {
+	t_raycast_info ray_info;
 	int hit;
 
 	hit = 0;
+	(void) camera;
 	while (!hit)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
@@ -53,29 +55,46 @@ void	make_dda(t_ray *ray, char **map)
 			hit = 1;
 	}
 	if (ray->side == 0)
-		ray->perp_wall_dist = ray->side_dist_x - ray->delta_dist_x;
+	{
+		ray_info.distance = ray->side_dist_x - ray->delta_dist_x;
+		if (ray->step_x > 0)
+			ray_info.side = 'W';
+		else
+			ray_info.side = 'E';
+		ray_info.pos = camera.pos_x - tan((2 * x / (double)WITH_SCREEN - 1) * (FOV * PI / 180.0 / 2.0)) * ray_info.distance;
+	}
 	else
-		ray->perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;
+	{
+		ray_info.distance = ray->side_dist_y - ray->delta_dist_y;
+		if (ray->step_y > 0)
+			ray_info.side = 'S';
+		else
+			ray_info.side = 'N';
+		ray_info.pos = camera.pos_y - (tan((2 * x / (double)WITH_SCREEN - 1) * (FOV * PI / 180.0 / 2.0)) * ray_info.distance);
+	}
+	ray_info.pos = fmod(ray_info.pos, 1.0);
+	if (ray_info.pos < 0)
+		ray_info.pos++;
+	return (ray_info);
 }
 
-double	calcule_raycast(t_data data, t_img img, int x, t_camera camera)
+t_raycast_info	calcule_raycast(t_data data, int x, t_camera camera)
 {
-	t_ray		ray;
-	double		camerax;
-
-//	(void) data;
-	(void) img;
+	t_ray			ray;
+	t_raycast_info	ray_info;
+	double			camerax;
 
 	camerax = (2.0 * (double)x) / (double)WITH_SCREEN - 1.0;
 	init_ray(&ray, &camera, camerax);
-	make_dda(&ray, data.map);
-	return (ray.perp_wall_dist);
+	ray_info = make_dda(&ray, data.map, x, camera);
+//	printf("%f %f\n", ray.side_dist_x, ray.side_dist_y);
+	printf("%f\n", ray_info.pos);
+	return (ray_info);
 }
 
-double *raycasting_minimap(t_data data, t_img img)
+t_raycast_info *raycasting_minimap(t_data data)
 {
-	t_raycast_info	*raycast_info;
-	double			*length;
+	t_raycast_info	*ray_info;
 	int 			x;
 	t_camera		camera;
 	double 			plan_length;
@@ -88,14 +107,13 @@ double *raycasting_minimap(t_data data, t_img img)
     camera.plane_x = -camera.dir_y * plan_length;
     camera.plane_y = camera.dir_x * plan_length;
 
+	ray_info = malloc(sizeof(t_raycast_info) * (WITH_SCREEN + 1));
+	ray_info[WITH_SCREEN].distance = -1;
 	x = 0;
-	raycast_info = malloc(sizeof(t_raycast_info) * (WITH_SCREEN + 2));
-	length = malloc(sizeof(double) * (WITH_SCREEN + 1));
-	raycast_info[WITH_SCREEN].distance = -1;
 	while (x < WITH_SCREEN)
 	{
-		length[x] = calcule_raycast(data, img, x, camera);
+		ray_info[x] = calcule_raycast(data, x, camera);
 		x++;
 	}
-	return (length);
+	return (ray_info);
 }

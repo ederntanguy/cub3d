@@ -19,7 +19,8 @@ void	ft_putnbr_fd(int n, int fd)
 	if (n < 0)
 	{
 		n2 = -n;
-		write(fd, "-", 1);
+		if (write(fd, "-", 1) < 0)
+			return ;
 	}
 	else
 		n2 = n;

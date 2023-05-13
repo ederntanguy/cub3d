@@ -74,7 +74,7 @@ void	show_map(t_img	img, char **map)
 				pix_pos.x = pos.x * LEN_CHUNCK_MAP;
 				while (pix_pos.x < LEN_CHUNCK_MAP + pos.x * LEN_CHUNCK_MAP)
 				{
-					my_mlx_pixel_put(&img, pix_pos.x, pix_pos.y, 0x00FF0000);
+					my_mlx_pixel_put(&img, pix_pos.x, pix_pos.y, 0xFFFF00);
 					pix_pos.x++;
 				}
 				pix_pos.y++;
