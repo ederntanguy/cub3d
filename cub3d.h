@@ -19,7 +19,7 @@
 # define LEN_CHUNCK 100
 # define LEN_CHUNCK_MAP 0.01
 # define PI 3.14159265359
-# define FOV 100.0
+# define FOV 75.0
 # define DEGRES_PRECISION 0.1
 # define LEN_RAYCAST 500000000.0
 # define PlAYER_SIZE 10
@@ -123,6 +123,7 @@ typedef struct s_all
 	t_window	*window;
 	t_textures	*textures;
 	t_img		*img;
+	int			is_show_finish;
 } t_all;
 
 typedef struct s_each_wall_pos
