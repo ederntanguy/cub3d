@@ -6,6 +6,8 @@ t_coordonatef	rotate_vector(t_coordonatef vector, int angle)
 	double			rad;
 
 	rad = angle * M_PI / 180.0;
+	if (vector.x == 0)
+		rad *= -1;
 	rotated.x = vector.x * cos(rad) - vector.y * sin(rad);
 	rotated.y = vector.x * sin(rad) - vector.y * cos(rad);
 	return (rotated);
