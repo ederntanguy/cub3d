@@ -31,6 +31,8 @@ int	main(int argc, char **argv)
 	t_textures	textures;
 	t_img		img;
 
+	if (argc != 2)
+		return (ft_putstr_fd("Error : Invalide number of parameter\n", 2), 0);	setup_mlx(&window);
 	setup_mlx(&window);
 	if (!setup_data(argv, &textures, &data, &window))
 		return (0);
@@ -39,8 +41,8 @@ int	main(int argc, char **argv)
 	all.window = &window;
 	all.is_show_finish = 0;
 	img.img = mlx_new_image(window.mlx, 1920, 1080);
-	img.addr = (unsigned char *)mlx_get_data_addr(img.img,
-												  &img.bits_per_pixel, &img.line_length, &img.endian);
+	img.addr = (unsigned char *)mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+												  &img.endian);
 	all.img = &img;
 	show_debug_map(&all);
 	mlx_hook(window.win, 2, 1L<<0, input_handling, &all);
