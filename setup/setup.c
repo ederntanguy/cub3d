@@ -28,7 +28,7 @@ int	setup_data(char **argv, t_textures *textures, t_data *data, t_window *window
 	if (setup_textures(fd, textures, window))
 		return (ft_putstr_fd("Failed to load textures or invalid .cub\n", 2), 0);
 	data->map = parsing_map(fd);
-	if (map_validity(data->map))
+	if (!map_validity(data->map))
 		return (ft_putstr_fd("Failed to load textures or invalid .cub\n", 2), 0);
 	data->player = make_player(data->map);
 	return (1);

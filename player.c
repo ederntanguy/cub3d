@@ -12,6 +12,19 @@
 
 #include "cub3d.h"
 
+int init_rotation_player(char orientation)
+{
+	if (orientation == 'N')
+		return (270);
+	else if (orientation == 'E')
+		return (0);
+	else if (orientation == 'S')
+		return (90);
+	else if (orientation == 'W')
+		return (180);
+	return (0);
+}
+
 t_player	make_player(char **map)
 {
 	t_player		player;
@@ -30,14 +43,8 @@ t_player	make_player(char **map)
 		{
 			player.coordonatef.x = chunck_pos.x * LEN_CHUNCK;
 			player.coordonatef.y = chunck_pos.y * LEN_CHUNCK;
-			if (map[chunck_pos.y][chunck_pos.x] == 'N')
-				player.rotation = 270;
-			else if (map[chunck_pos.y][chunck_pos.x] == 'E')
-				player.rotation = 0;
-			else if (map[chunck_pos.y][chunck_pos.x] == 'S')
-				player.rotation = 90;
-			else if (map[chunck_pos.y][chunck_pos.x] == 'W')
-				player.rotation = 180;
+			player.rotation
+				= init_rotation_player(map[chunck_pos.y][chunck_pos.x]);
 			return (player);
 		}
 		chunck++;

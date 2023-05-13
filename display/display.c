@@ -34,12 +34,13 @@ void	make_colum_color(t_img img, int pos_x, t_raycast_info ray, t_textures textu
 	t_img	side_texture;
 
 	side_texture = return_side_texture(ray.side, textures);
-	color = 50000;
+	color = 0;
 	height = HEIGHT_SCREEN / ray.distance;
 	y = (HEIGHT_SCREEN - height) / 2;
 	while (y < HEIGHT_SCREEN - (HEIGHT_SCREEN - height) / 2)
 	{
-		color = have_color_value(side_texture, (int)(ray.pos * side_texture.width), (int)((y - ((HEIGHT_SCREEN - height) / 2)) * side_texture.heigth / height));
+		color = have_color_value(side_texture, (int)(ray.pos * side_texture.width),
+								 (int)((y - ((HEIGHT_SCREEN - height) / 2)) * side_texture.heigth / height));
 		my_mlx_pixel_put(&img, pos_x, y, color);
 		y++;
 	}

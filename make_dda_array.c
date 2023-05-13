@@ -2,8 +2,6 @@
 
 void	init_ray(t_ray *ray, t_camera *camera, double camerax)
 {
-	ray->ray_dir_x = camera->dir_x + camera->plane_x * camerax;
-	ray->ray_dir_y = camera->dir_y + camera->plane_y * camerax;
 	ray->map_x = (int)camera->pos_x;
 	ray->map_y = (int)camera->pos_y;
 	ray->delta_dist_x = fabs(1.0 / ray->ray_dir_x);
@@ -30,16 +28,31 @@ void	init_ray(t_ray *ray, t_camera *camera, double camerax)
 	}
 }
 
-t_raycast_info	make_dda(t_ray *ray, char **map, int x, t_camera camera)
+void	have_side_distance_impact(t_raycast_info *ray_info, t_ray *ray)
 {
-	t_raycast_info ray_info;
+	if (ray->side == 0)
+	{
+		ray_info->distance = ray->side_dist_x - ray->delta_dist_x;
+		if (ray->step_x > 0)
+			ray_info->side = 'E';
+		else
+			ray_info->side = 'W';
+	}
+	else
+	{
+		ray_info->distance = ray->side_dist_y - ray->delta_dist_y;
+		if (ray->step_y > 0)
+			ray_info->side = 'N';
+		else
+			ray_info->side = 'S';
+	}
+}
+
+void	find_hit_position(t_ray *ray, char **map)
+{
 	int hit;
-	double wall_hit_x;
-	double wall_hit_y;
 
 	hit = 0;
-	(void)x ;
-	(void) camera;
 	while (!hit)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
@@ -57,30 +70,22 @@ t_raycast_info	make_dda(t_ray *ray, char **map, int x, t_camera camera)
 		if (map[ray->map_y][ray->map_x] == '1')
 			hit = 1;
 	}
-	if (ray->side == 0)
-	{
-		ray_info.distance = ray->side_dist_x - ray->delta_dist_x;
-		if (ray->step_x > 0)
-			ray_info.side = 'E';
-		else
-			ray_info.side = 'W';
-	}
-	else
-	{
-		ray_info.distance = ray->side_dist_y - ray->delta_dist_y;
-		if (ray->step_y > 0)
-			ray_info.side = 'N';
-		else
-			ray_info.side = 'S';
-	}
+}
+
+t_raycast_info	make_dda(t_ray *ray, char **map, t_camera camera)
+{
+	t_raycast_info ray_info;
+	double wall_hit_x;
+	double wall_hit_y;
+
+	find_hit_position(ray, map);
+	have_side_distance_impact(&ray_info, ray);
 	wall_hit_x = camera.pos_x + ray_info.distance * ray->ray_dir_x;
 	wall_hit_y = camera.pos_y +  ray_info.distance * ray->ray_dir_y;
 	if (ray->side == 0)
 		ray_info.pos = wall_hit_y - floor(wall_hit_y);
 	else
 		ray_info.pos = wall_hit_x - floor(wall_hit_x);
-	if (ray_info.pos < 0)
-		ray_info.pos++;
 	return (ray_info);
 }
 
@@ -91,8 +96,10 @@ t_raycast_info	calcule_raycast(t_data data, int x, t_camera camera)
 	double			camerax;
 
 	camerax = (2.0 * (double)x) / (double)WITH_SCREEN - 1.0;
+	ray.ray_dir_x = camera.dir_x + camera.plane_x * camerax;
+	ray.ray_dir_y = camera.dir_y + camera.plane_y * camerax;
 	init_ray(&ray, &camera, camerax);
-	ray_info = make_dda(&ray, data.map, x, camera);
+	ray_info = make_dda(&ray, data.map, camera);
 	return (ray_info);
 }
 
@@ -110,7 +117,6 @@ t_raycast_info *raycasting_minimap(t_data data)
 	camera.dir_y = sin(data.player.rotation * (PI / 180));
 	camera.plane_x = -camera.dir_y * plan_length;
 	camera.plane_y = camera.dir_x * plan_length;
-
 	ray_info = malloc(sizeof(t_raycast_info) * (WITH_SCREEN + 1));
 	ray_info[WITH_SCREEN].distance = -1;
 	x = 0;

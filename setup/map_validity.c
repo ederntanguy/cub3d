@@ -7,10 +7,10 @@ int empty(char c)
 	return (0);
 }
 
-int	is_hole(char **map, int x, int y)
-{
-	if (map[y - 1][x - 1] == ' ' || )
-}
+//int	is_hole(char **map, int x, int y)
+//{
+//	if (map[y - 1][x - 1] == ' ' || )
+//}
 
 int hole_in_map(char **map)
 {
@@ -19,7 +19,7 @@ int hole_in_map(char **map)
 	i = 0;
     while (map[0][i])
 	{
-        if (map[0][i] == '0' || map[ft_tablen(map) - 1][i] == '0')
+        if (map[0][i] == '0' || map[ft_dbstrlen(map) - 1][i] == '0')
             return (1);
         i++;
     }
