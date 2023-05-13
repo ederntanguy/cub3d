@@ -12,8 +12,16 @@
 
 #include "cub3d.h"
 
-int	quit(void *a)
+int	quit(t_all *all)
 {
-	(void) a;
+	mlx_destroy_image(all->window->mlx, all->img->img);
+	mlx_destroy_image(all->window->mlx, all->textures->east.img);
+	mlx_destroy_image(all->window->mlx, all->textures->west.img);
+	mlx_destroy_image(all->window->mlx, all->textures->south.img);
+	mlx_destroy_image(all->window->mlx, all->textures->north.img);
+	mlx_destroy_window(all->window->mlx, all->window->win);
+	mlx_destroy_display(all->window->mlx);
+	free(all->window->mlx);
+	ft_free_dbchar_tab(all->data->map, 0);
 	exit(EXIT_SUCCESS);
 }

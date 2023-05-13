@@ -34,8 +34,11 @@ t_raycast_info	make_dda(t_ray *ray, char **map, int x, t_camera camera)
 {
 	t_raycast_info ray_info;
 	int hit;
+	double wall_hit_x;
+	double wall_hit_y;
 
 	hit = 0;
+	(void)x ;
 	(void) camera;
 	while (!hit)
 	{
@@ -58,21 +61,24 @@ t_raycast_info	make_dda(t_ray *ray, char **map, int x, t_camera camera)
 	{
 		ray_info.distance = ray->side_dist_x - ray->delta_dist_x;
 		if (ray->step_x > 0)
-			ray_info.side = 'W';
-		else
 			ray_info.side = 'E';
-		ray_info.pos = camera.pos_x - tan((2 * x / (double)WITH_SCREEN - 1) * (FOV * PI / 180.0 / 2.0)) * ray_info.distance;
+		else
+			ray_info.side = 'W';
 	}
 	else
 	{
 		ray_info.distance = ray->side_dist_y - ray->delta_dist_y;
 		if (ray->step_y > 0)
-			ray_info.side = 'S';
-		else
 			ray_info.side = 'N';
-		ray_info.pos = camera.pos_y - (tan((2 * x / (double)WITH_SCREEN - 1) * (FOV * PI / 180.0 / 2.0)) * ray_info.distance);
+		else
+			ray_info.side = 'S';
 	}
-	ray_info.pos = fmod(ray_info.pos, 1.0);
+	wall_hit_x = camera.pos_x + ray_info.distance * ray->ray_dir_x;
+	wall_hit_y = camera.pos_y +  ray_info.distance * ray->ray_dir_y;
+	if (ray->side == 0)
+		ray_info.pos = wall_hit_y - floor(wall_hit_y);
+	else
+		ray_info.pos = wall_hit_x - floor(wall_hit_x);
 	if (ray_info.pos < 0)
 		ray_info.pos++;
 	return (ray_info);
@@ -87,8 +93,6 @@ t_raycast_info	calcule_raycast(t_data data, int x, t_camera camera)
 	camerax = (2.0 * (double)x) / (double)WITH_SCREEN - 1.0;
 	init_ray(&ray, &camera, camerax);
 	ray_info = make_dda(&ray, data.map, x, camera);
-//	printf("%f %f\n", ray.side_dist_x, ray.side_dist_y);
-	printf("%f\n", ray_info.pos);
 	return (ray_info);
 }
 
@@ -104,8 +108,8 @@ t_raycast_info *raycasting_minimap(t_data data)
 	camera.pos_y = (data.player.coordonatef.y + PlAYER_SIZE / 2)/ 100.0;
 	camera.dir_x = cos(data.player.rotation * (PI / 180));
 	camera.dir_y = sin(data.player.rotation * (PI / 180));
-    camera.plane_x = -camera.dir_y * plan_length;
-    camera.plane_y = camera.dir_x * plan_length;
+	camera.plane_x = -camera.dir_y * plan_length;
+	camera.plane_y = camera.dir_x * plan_length;
 
 	ray_info = malloc(sizeof(t_raycast_info) * (WITH_SCREEN + 1));
 	ray_info[WITH_SCREEN].distance = -1;

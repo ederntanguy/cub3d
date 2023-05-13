@@ -44,11 +44,13 @@ typedef struct s_window
 }	t_window;
 
 typedef struct s_img {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void			*img;
+	unsigned char	*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int 			width;
+	int 			heigth;
 }				t_img;
 
 typedef struct s_textures {
@@ -68,8 +70,8 @@ typedef struct s_coordonate
 
 typedef struct s_coordonatef
 {
-    double	x;
-    double	y;
+	double	x;
+	double	y;
 } t_coordonatef;
 
 typedef struct s_player
@@ -119,7 +121,8 @@ typedef struct s_all
 {
 	t_data		*data;
 	t_window	*window;
-	t_textures	textures;
+	t_textures	*textures;
+	t_img		*img;
 } t_all;
 
 typedef struct s_each_wall_pos
@@ -154,7 +157,7 @@ void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
 int					count_nb_chunck(char **map);
 void				show_map(t_img	img, char **map);
 void				my_mlx_pixel_put(t_img *img, int x, int y, int color);
-int					quit(void *a);
+int					quit(t_all *all);
 
 //Parcing
 
@@ -191,7 +194,7 @@ t_raycast_info		*raycasting_minimap(t_data data);
 
 //show 3dmap
 
-void 				show_screen(t_raycast_info *ray_info, t_img img);
+void 				show_screen(t_raycast_info *ray_info, t_img img, t_textures textures);
 
 // checkpos
 
