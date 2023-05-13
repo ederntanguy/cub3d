@@ -1,68 +1,58 @@
 #include "../cub3d.h"
 
-void	show_right_left_line(t_img img, int pos_x, int height, int color)
+t_img	return_side_texture(char side, t_textures textures)
 {
-	int hgt_scrn;
-	int y;
+	if (side == 'N')
+		return (textures.north);
+	else if (side == 'S')
+		return (textures.south);
+	else if (side == 'E')
+		return (textures.east);
+	else if (side == 'w')
+		return (textures.west);
+	return (textures.east);
+}
 
-	hgt_scrn = HEIGHT_SCREEN;
-	y = (hgt_scrn - height) / 2;
-	while (y < hgt_scrn - (hgt_scrn - height) / 2)
+int have_color_value(t_img side_texture, int x, int y)
+{
+	int color;
+	int pos_color;
+
+	pos_color = (y * side_texture.line_length)
+			+ (x * side_texture.bits_per_pixel / 8);
+	color = side_texture.addr[pos_color] * 256 * 256;
+	color += side_texture.addr[pos_color + 1] * 256;
+	color += side_texture.addr[pos_color + 2];
+	return (color);
+}
+
+void	make_colum_color(t_img img, int pos_x, t_raycast_info ray, t_textures textures)
+{
+	int		y;
+	int		color;
+	int 	height;
+	t_img	side_texture;
+
+	side_texture = return_side_texture(ray.side, textures);
+	color = 50000;
+	height = HEIGHT_SCREEN / ray.distance;
+	y = (HEIGHT_SCREEN - height) / 2;
+	while (y < HEIGHT_SCREEN - (HEIGHT_SCREEN - height) / 2)
 	{
-		//ft_putnbr_fd(y, 1);
+		color = have_color_value(side_texture, (int)(ray.pos * side_texture.width), (int)((y - ((HEIGHT_SCREEN - height) / 2)) * side_texture.heigth / height));
 		my_mlx_pixel_put(&img, pos_x, y, color);
 		y++;
 	}
 }
 
-void	show_bottom_top_line(t_img img, t_blocK_wall all_wall, int color)
-{
-	double			len_line;
-	int				hgt_scrn;
-	double			radian;
-	int				i;
-	t_coordonate	pos;
-
-	i = 0;
-	hgt_scrn = HEIGHT_SCREEN;
-	len_line = sqrt(pow((hgt_scrn - all_wall.height_start) / 2
-						- (hgt_scrn - all_wall.height_end) / 2, 2)
-					+ pow(all_wall.pos_x_start - all_wall.pos_x_end, 2));
-	radian = acos((all_wall.pos_x_end - all_wall.pos_x_start) / len_line);
-	if (all_wall.start_distance > all_wall.end_distance)
-		radian = -radian;
-	while (i < len_line)
-	{
-		pos.x = i * cos(radian) + all_wall.pos_x_start;
-		pos.y = i * sin(radian) + (hgt_scrn - all_wall.height_start) / 2;
-		my_mlx_pixel_put(&img, pos.x, pos.y, color);
-		pos.y = i++ * sin(-radian) + (hgt_scrn - (hgt_scrn - all_wall.height_start) / 2);
-		my_mlx_pixel_put(&img, pos.x, pos.y, color);
-	}
-}
-
-void	show_screen(t_raycast_info *ray_info, t_img img)
+void	show_screen(t_raycast_info *ray_info, t_img img, t_textures textures)
 {
 	int i;
-	int color;
-	int	temp;
 
 	i = 0;
-	color = 0;
 	while (i < 1920)
 	{
-		temp = HEIGHT_SCREEN / ray_info[i].distance;
-		if (temp <= 0)
-			temp = 257;
-		if (ray_info[i].side == 'S')
-			color = 0x0000FF;
-		if (ray_info[i].side == 'N')
-			color = 0x00FFFF;
-		if (ray_info[i].side == 'E')
-			color = 0xFFFFFF;
-		if (ray_info[i].side == 'W')
-			color = 0x000000;
-		show_right_left_line(img, i, temp, color);
+		make_colum_color(img, i, ray_info[i], textures);
 		i++;
 	}
 }

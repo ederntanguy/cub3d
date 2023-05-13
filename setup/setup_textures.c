@@ -3,14 +3,10 @@
 t_img	make_image(void *mlx, char *filename)
 {
 	t_img	img;
-	int		x;
-	int		y;
 
-	(void) x;
-	(void) y;
 	filename[ft_strlen(filename) - 1] = 0;
-	img.img = mlx_xpm_file_to_image(mlx, filename + 3, &x, &y);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+	img.img = mlx_xpm_file_to_image(mlx, filename + 3, &(img.width), &(img.heigth));
+	img.addr = (unsigned char *)mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 					&img.endian);
 	return (img);
 }
@@ -63,5 +59,6 @@ int	setup_textures(int fd, t_textures *textures, t_window *window)
 			textures->roof = make_color(tmp + 2);
 		tmp = get_next_line(fd);
 	}
+	printf("%d \n", textures->south.addr[(9 * textures->south.line_length) + (15 * textures->south.bits_per_pixel / 8)]);
 	return (0);
 }

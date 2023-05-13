@@ -44,11 +44,13 @@ typedef struct s_window
 }	t_window;
 
 typedef struct s_img {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void			*img;
+	unsigned char	*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int 			width;
+	int 			heigth;
 }				t_img;
 
 typedef struct s_textures {
@@ -191,7 +193,7 @@ t_raycast_info		*raycasting_minimap(t_data data);
 
 //show 3dmap
 
-void 				show_screen(t_raycast_info *ray_info, t_img img);
+void 				show_screen(t_raycast_info *ray_info, t_img img, t_textures textures);
 
 // checkpos
 

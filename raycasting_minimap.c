@@ -88,7 +88,7 @@ t_raycast_info	calcule_raycast(t_data data, int x, t_camera camera)
 	init_ray(&ray, &camera, camerax);
 	ray_info = make_dda(&ray, data.map, x, camera);
 //	printf("%f %f\n", ray.side_dist_x, ray.side_dist_y);
-	printf("%f\n", ray_info.pos);
+//	printf("%f\n", ray_info.pos);
 	return (ray_info);
 }
 

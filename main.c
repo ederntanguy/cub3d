@@ -15,7 +15,7 @@
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
-	char	*dst;
+	unsigned char	*dst;
 
 	if (!(x >= 0 && x <= WITH_SCREEN && y >= 0 && y <= HEIGHT_SCREEN))
 		return ;
