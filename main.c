@@ -35,7 +35,8 @@ int	main(int argc, char **argv)
 		return (ft_putstr_fd("Error : Invalide number of parameter\n", 2), 0);
 	setup_mlx(&window);
 	if (!setup_data(argv, &textures, &data, &window))
-		return (0);
+		return (mlx_destroy_window(window.mlx, window.win),
+				mlx_destroy_display(window.mlx), free(window.mlx), 0);
 	all.data = &data;
 	all.textures = &textures;
 	all.window = &window;
