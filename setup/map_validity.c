@@ -7,29 +7,33 @@ int empty(char c)
 	return (0);
 }
 
-//int	is_hole(char **map, int x, int y)
-//{
-//	if (map[y - 1][x - 1] == ' ' || )
-//}
+int	is_hole(char **map, int x, int y)
+{
+	if (x == 0 || y == 0
+		|| (y != 0 && ((x != 0 && empty(map[y - 1][x - 1])) || empty(map[y - 1][x]) || (map[y - 1][x + 1] && empty(map[y - 1][x + 1]))))
+		|| ((x != 0 && empty(map[y][x - 1])) && (map[y][x + 1] && empty(map[y][x + 1])))
+		|| (map[y + 1] == NULL && ((x != 0 && empty(map[y + 1][x - 1])) || empty(map[y + 1][x]) || (map[y + 1][x + 1] && empty(map[y + 1][x + 1])))))
+		return (1);
+	return (0);
+}
 
 int hole_in_map(char **map)
 {
-    int i;
+    int x;
+	int	y;
 
-	i = 0;
-    while (map[0][i])
+	y = 0;
+	while (map[y])
 	{
-        if (map[0][i] == '0' || map[ft_dbstrlen(map) - 1][i] == '0')
-            return (1);
-        i++;
-    }
-	i = 0;
-    while (map[i])
-	{
-        if (map[i][0] == '0' || map[i][ft_strlen(map[i]) - 1] == '0')
-            return (1);
-        i++;
-    }
+		x = 0;
+		while (map[y][x])
+		{
+			if ((map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E' || map[y][x] == 'W') && is_hole(map, x, y))
+				return (1);
+			x++;
+		}
+		y++;
+	}
 	return (0);
 }
 

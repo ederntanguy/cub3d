@@ -47,8 +47,7 @@ int	setup_data(char **argv, t_textures *textures, t_data *data, t_window *window
 		return (ft_putstr_fd("Failed to load textures or invalid .cub\n", 2), 0);
 	data->map = parsing_map(fd);
 	if (!map_validity(data->map))
-		return (ft_free_dbchar_tab(data->map, 0),
-				ft_putstr_fd("Failed to load textures or invalid .cub\n", 2), 0);
+		return (ft_free_dbchar_tab(data->map, 0), 0);
 	data->player = make_player(data->map);
 	return (1);
 }
