@@ -2,6 +2,8 @@
 
 int	input_handling(int keycode, t_all *all)
 {
+	if (keycode == 65307)
+		quit(all);
 	if (all->is_show_finish)
 	{
 		if (keycode == 'd')

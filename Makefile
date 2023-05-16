@@ -29,7 +29,7 @@ OBJS		=	\
 
 				
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra -g
+CFLAGS		=	-Wall -Werror -Wextra -O3
 LIBS		=	-Lmlx -lmlx -lXext -lX11 -lm
 RM			=	rm -f
 
