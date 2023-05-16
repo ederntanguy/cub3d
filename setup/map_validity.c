@@ -2,7 +2,7 @@
 
 int empty(char c)
 {
-	if (c == ' ' || c == '0')
+	if (c == ' ')
 		return (1);
 	return (0);
 }
@@ -12,7 +12,7 @@ int	is_hole(char **map, int x, int y)
 	if (x == 0 || y == 0
 		|| (y != 0 && ((x != 0 && empty(map[y - 1][x - 1])) || empty(map[y - 1][x]) || (map[y - 1][x + 1] && empty(map[y - 1][x + 1]))))
 		|| ((x != 0 && empty(map[y][x - 1])) && (map[y][x + 1] && empty(map[y][x + 1])))
-		|| (map[y + 1] == NULL && ((x != 0 && empty(map[y + 1][x - 1])) || empty(map[y + 1][x]) || (map[y + 1][x + 1] && empty(map[y + 1][x + 1])))))
+		|| (map[y + 1] != NULL && ((x != 0 && empty(map[y + 1][x - 1])) || empty(map[y + 1][x]) || (map[y + 1][x + 1] && empty(map[y + 1][x + 1])))))
 		return (1);
 	return (0);
 }
