@@ -42,6 +42,16 @@ int	make_color(char *str)
 	return (ret);
 }
 
+void init_to_null_textures(t_textures *textures)
+{
+	textures->south.img = NULL;
+	textures->north.img = NULL;
+	textures->east.img = NULL;
+	textures->west.img = NULL;
+	textures->roof = -1;
+	textures->floor = -1;
+}
+
 int	setup_textures(int fd, t_textures *textures, t_window *window)
 {
 	char	*tmp;
@@ -49,6 +59,7 @@ int	setup_textures(int fd, t_textures *textures, t_window *window)
 	int 	i;
 
 	stop = 0;
+	init_to_null_textures(textures);
 	tmp = get_next_line(fd);
 	while (tmp && stop < 6)
 	{
