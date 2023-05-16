@@ -19,7 +19,7 @@ int	is_hole(char **map, int x, int y)
 
 int hole_in_map(char **map)
 {
-    int x;
+	int x;
 	int	y;
 
 	y = 0;
