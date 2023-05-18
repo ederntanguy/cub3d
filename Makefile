@@ -6,8 +6,8 @@ LIBFT		=	 ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.
                  ft_strnstr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c ft_free_dbchar.c ft_dbstrlen.c get_next_line.c get_next_line_utils.c \
                  ft_realloc_dbchar.c
 
-SRCS		=	main.c exit.c player.c make_dda_array.c
-SRCS2		=	movement.c vector_utils.c input.c checker.c
+SRCS		=	main.c exit.c make_dda_array.c need_place.c
+SRCS2		=	movement.c vector_utils.c input.c checker.c player.c
 SRCS3		=	setup.c setup_textures.c map_validity.c
 SRCS4		=	debug.c
 SRCS5		=	display.c show_minimap.c show_player.c roof_floor_display.c

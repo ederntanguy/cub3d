@@ -1,33 +1,5 @@
 #include "cub3d.h"
 
-void	init_ray(t_ray *ray, t_camera *camera)
-{
-	ray->map_x = (int)camera->pos_x;
-	ray->map_y = (int)camera->pos_y;
-	ray->delta_dist_x = fabs(1.0 / ray->ray_dir_x);
-	ray->delta_dist_y = fabs(1.0 / ray->ray_dir_y);
-	if (ray->ray_dir_x < 0)
-	{
-		ray->step_x = -1;
-		ray->side_dist_x = (camera->pos_x - ray->map_x) * ray->delta_dist_x;
-	}
-	else
-	{
-		ray->step_x = 1;
-		ray->side_dist_x = (ray->map_x + 1.0 - camera->pos_x) * ray->delta_dist_x;
-	}
-	if (ray->ray_dir_y < 0)
-	{
-		ray->step_y = -1;
-		ray->side_dist_y = (camera->pos_y - ray->map_y) * ray->delta_dist_y;
-	}
-	else
-	{
-		ray->step_y = 1;
-		ray->side_dist_y = (ray->map_y + 1.0 - camera->pos_y) * ray->delta_dist_y;
-	}
-}
-
 void	have_side_distance_impact(t_raycast_info *ray_info, t_ray *ray)
 {
 	if (ray->side == 0)

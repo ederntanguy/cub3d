@@ -11,7 +11,9 @@ int	invalid_character(char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			if (!(map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E' || map[y][x] == 'W' || map[y][x] == ' ' || map[y][x] == '1' || map[y][x] == '\n'))
+			if (!(map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'S'
+					|| map[y][x] == 'E' || map[y][x] == 'W' || map[y][x] == ' '
+					|| map[y][x] == '1' || map[y][x] == '\n'))
 				return (1);
 			x++;
 		}
@@ -20,19 +22,17 @@ int	invalid_character(char **map)
 	return (0);
 }
 
-int empty(char c)
-{
-	if (c == ' ' || c == 0 || c == '\n')
-		return (1);
-	return (0);
-}
-
 int	is_hole(char **map, int x, int y)
 {
 	if (x == 0 || y == 0
-		|| (y != 0 && ((x != 0 && empty(map[y - 1][x - 1])) || empty(map[y - 1][x]) || (map[y - 1][x + 1] && empty(map[y - 1][x + 1]))))
-		|| ((x != 0 && empty(map[y][x - 1])) && (map[y][x + 1] && empty(map[y][x + 1])))
-		|| (map[y + 1] != NULL && ((x != 0 && empty(map[y + 1][x - 1])) || empty(map[y + 1][x]) || (map[y + 1][x + 1] && empty(map[y + 1][x + 1])))))
+		|| (y != 0 && ((x != 0 && empty(map[y - 1][x - 1]))
+		|| empty(map[y - 1][x]) || (map[y - 1][x + 1]
+		&& empty(map[y - 1][x + 1]))))
+		|| ((x != 0 && empty(map[y][x - 1]))
+		&& (map[y][x + 1] && empty(map[y][x + 1])))
+		|| (map[y + 1] != NULL && ((x != 0 && empty(map[y + 1][x - 1]))
+		|| empty(map[y + 1][x]) || (map[y + 1][x + 1]
+		&& empty(map[y + 1][x + 1])))))
 		return (1);
 	return (0);
 }
@@ -48,7 +48,9 @@ int hole_in_map(char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			if ((map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E' || map[y][x] == 'W') && is_hole(map, x, y))
+			if ((map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'S'
+					|| map[y][x] == 'E' || map[y][x] == 'W')
+					&& is_hole(map, x, y))
 				return (1);
 			x++;
 		}
@@ -70,7 +72,8 @@ int	missing_player(char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == 'S' || map[y][x] == 'N' || map[y][x] == 'W' || map[y][x] == 'E')
+			if (map[y][x] == 'S' || map[y][x] == 'N'
+					|| map[y][x] == 'W' || map[y][x] == 'E')
 				player++;
 			x++;
 		}

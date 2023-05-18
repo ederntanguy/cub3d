@@ -1,9 +1,15 @@
    NO  ./img/north1.xpm
                      SO ./img/south1.xpm
 WE                        ./img/west1.xpm
+
+
+
+
+
 EA   ./img/east1.xpm
 
   F   100,255,100
+
 C                  225,30,0
 
         1111111111111111111111111

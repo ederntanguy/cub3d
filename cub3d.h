@@ -167,7 +167,7 @@ int					map_validity(char **map);
 
 //Setup
 
-void				setup_mlx(t_window *window);
+int					setup_mlx(t_window *window);
 int					setup_textures(int fd, t_textures *textures, t_window *window);
 int					setup_data(char **argv, t_textures *textures, t_data *data, t_window *window);
 
@@ -189,6 +189,11 @@ t_player			make_player(char **map);
 //Debug
 
 int					show_debug_map(t_all *all);
+int					check_texture_good_init(t_textures *t, t_window *w, int wh);
+char				**parsing_map(int fd);
+int					empty(char c);
+void				init_ray(t_ray *r, t_camera *camera);
+
 
 //Raycasting
 
