@@ -183,7 +183,6 @@ int					roundFloat(float value);
 
 int					input_handling(int keycode, t_all *all);
 void				move(t_data	*data, double x, double y);
-int					show_player_mini_map(t_img img, t_player player);
 t_player			make_player(char **map);
 
 //Debug

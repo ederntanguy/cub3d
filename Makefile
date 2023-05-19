@@ -10,7 +10,7 @@ SRCS		=	main.c exit.c make_dda_array.c need_place.c
 SRCS2		=	movement.c vector_utils.c input.c checker.c player.c
 SRCS3		=	setup.c setup_textures.c map_validity.c
 SRCS4		=	debug.c
-SRCS5		=	display.c show_minimap.c show_player.c roof_floor_display.c
+SRCS5		=	display.c show_minimap.c roof_floor_display.c
 
 OBJDIR_SRCS		=	obj
 OBJDIR_SRCS2	=	libft/obj
