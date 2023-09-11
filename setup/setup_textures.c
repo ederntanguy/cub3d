@@ -12,6 +12,8 @@ t_img	make_image(void *mlx, char *filename)
 	filename[ft_strlen(filename) - 1] = 0;
 	img.img = mlx_xpm_file_to_image(mlx,
 									filename + 2 + i, &(img.width), &(img.heigth));
+	if (!img.img)
+		return (img);
 	img.addr = (unsigned char *)mlx_get_data_addr(img.img, &img.bits_per_pixel,
 												  &img.line_length, &img.endian);
 	return (img);

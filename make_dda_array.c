@@ -75,7 +75,7 @@ t_raycast_info	calcule_raycast(t_data data, int x, t_camera camera)
 	return (ray_info);
 }
 
-t_raycast_info *raycasting_minimap(t_data data)
+t_raycast_info *raycasting(t_data data)
 {
 	t_raycast_info	*ray_info;
 	int 			x;

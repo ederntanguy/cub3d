@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/13 18:44:38 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:37:39 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ void				init_ray(t_ray *r, t_camera *camera);
 
 //Raycasting
 
-t_raycast_info		*raycasting_minimap(t_data data);
+t_raycast_info		*raycasting(t_data data);
 
 //show 3dmap
 

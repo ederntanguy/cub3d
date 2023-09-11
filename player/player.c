@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:01:15 by gde-carv          #+#    #+#             */
-/*   Updated: 2023/05/02 13:00:22 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:29:57 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ t_player	make_player(char **map)
 		chunck++;
 	}
 	player.coordonatef.x = 0;
+	player.coordonatef.y = 0;
 	return (player);
 }
