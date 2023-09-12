@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   make_dda_array.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 11:25:08 by etanguy           #+#    #+#             */
+/*   Updated: 2023/09/12 11:35:47 by etanguy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	have_side_distance_impact(t_raycast_info *ray_info, t_ray *ray)
@@ -22,7 +34,7 @@ void	have_side_distance_impact(t_raycast_info *ray_info, t_ray *ray)
 
 void	find_hit_position(t_ray *ray, char **map)
 {
-	int hit;
+	int	hit;
 
 	hit = 0;
 	while (!hit)
@@ -46,14 +58,14 @@ void	find_hit_position(t_ray *ray, char **map)
 
 t_raycast_info	make_dda(t_ray *ray, char **map, t_camera camera)
 {
-	t_raycast_info ray_info;
-	double wall_hit_x;
-	double wall_hit_y;
+	t_raycast_info	ray_info;
+	double			wall_hit_x;
+	double			wall_hit_y;
 
 	find_hit_position(ray, map);
 	have_side_distance_impact(&ray_info, ray);
 	wall_hit_x = camera.pos_x + ray_info.distance * ray->ray_dir_x;
-	wall_hit_y = camera.pos_y +  ray_info.distance * ray->ray_dir_y;
+	wall_hit_y = camera.pos_y + ray_info.distance * ray->ray_dir_y;
 	if (ray->side == 0)
 		ray_info.pos = wall_hit_y - floor(wall_hit_y);
 	else
@@ -75,16 +87,16 @@ t_raycast_info	calcule_raycast(t_data data, int x, t_camera camera)
 	return (ray_info);
 }
 
-t_raycast_info *raycasting(t_data data)
+t_raycast_info	*raycasting(t_data data)
 {
 	t_raycast_info	*ray_info;
-	int 			x;
+	int				x;
 	t_camera		camera;
-	double 			plan_length;
+	double			plan_length;
 
 	plan_length = tan((FOV * PI / 180.0) / 2);
-	camera.pos_x = (data.player.coordonatef.x + PlAYER_SIZE / 2) / 100.0;
-	camera.pos_y = (data.player.coordonatef.y + PlAYER_SIZE / 2)/ 100.0;
+	camera.pos_x = (data.player.coordonatef.x + PLAYER_SIZE / 2) / 100.0;
+	camera.pos_y = (data.player.coordonatef.y + PLAYER_SIZE / 2) / 100.0;
 	camera.dir_x = cos(data.player.rotation * (PI / 180));
 	camera.dir_y = sin(data.player.rotation * (PI / 180));
 	camera.plane_x = -camera.dir_y * plan_length;

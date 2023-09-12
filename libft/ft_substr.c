@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 09:13:23 by etanguy           #+#    #+#             */
-/*   Updated: 2022/11/11 10:29:30 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 11:42:45 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static int	ft_min(int a, int b)
 
 char	*ft_substr(char const *s, int start, int len)
 {
-	int	i;
-	int	endlen;
+	int		i;
+	int		endlen;
 	char	*end;
 
 	if (start >= ft_strlen(s))

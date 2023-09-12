@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 11:33:38 by etanguy           #+#    #+#             */
+/*   Updated: 2023/09/12 11:34:06 by etanguy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	check_is_cub_file(char *name_map)
@@ -40,12 +52,13 @@ int	check_texture_good_init(t_textures *textures, t_window *window, int where)
 			free_img_texture(textures, window);
 			ft_putstr_fd("Don't have all informations\n", 2);
 		}
-		return ( 0);
+		return (0);
 	}
 	return (1);
 }
 
-int	setup_data(char **argv, t_textures *textures, t_data *data, t_window *window)
+int	setup_data(char **argv, t_textures *textures,
+t_data *data, t_window *window)
 {
 	int	fd;
 
@@ -56,13 +69,13 @@ int	setup_data(char **argv, t_textures *textures, t_data *data, t_window *window
 		return (ft_putstr_fd("Failed to open .cub\n", 2), 0);
 	if (setup_textures(fd, textures, window))
 		return (ft_putstr_fd("Failed to load textures or invalid .cub\n", 2),
-				0);
+			0);
 	if (!check_texture_good_init(textures, window, 1))
 		return (0);
 	data->map = parsing_map(fd);
 	if (!map_validity(data->map))
 		return (free_img_texture(textures, window),
-				ft_free_dbchar_tab(data->map, 0), 0);
+			ft_free_dbchar_tab(data->map, 0), 0);
 	data->player = make_player(data->map);
 	return (1);
 }

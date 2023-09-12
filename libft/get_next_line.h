@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:53:35 by etanguy           #+#    #+#             */
-/*   Updated: 2022/11/21 15:01:16 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 11:43:27 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct all_variable
 {
 	char		buf[BUFFER_SIZE + 1];
 	char		*line;
-	int		ret;
+	int			ret;
 }	t_all_variable;
 
 int		isbackslashinbuf(char *buf);

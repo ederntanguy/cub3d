@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   debug.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 11:26:10 by etanguy           #+#    #+#             */
+/*   Updated: 2023/09/12 11:26:20 by etanguy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	show_debug_map(t_all *all)
@@ -9,7 +21,7 @@ int	show_debug_map(t_all *all)
 		mlx_destroy_image(all->window->mlx, all->img->img);
 	img.img = mlx_new_image(all->window->mlx, 1920, 1080);
 	img.addr = (unsigned char *)mlx_get_data_addr(img.img,
-												  &img.bits_per_pixel, &img.line_length, &img.endian);
+			&img.bits_per_pixel, &img.line_length, &img.endian);
 	all->is_show_finish = 0;
 	show_roof_floor(img, *(all->textures));
 	ray_info = raycasting(*(all->data));

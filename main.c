@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gde-carv <gde-carv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:18 by etanguy           #+#    #+#             */
-/*   Updated: 2023/05/02 14:40:40 by gde-carv         ###   ########.fr       */
+/*   Updated: 2023/09/12 11:24:00 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 {
 	t_window	window;
 	t_data		data;
-	t_all 		all;
+	t_all		all;
 	t_textures	textures;
 
 	if (argc != 2)
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 		return (ft_putstr_fd("Really ? Env -i ?\n", 2), 0);
 	if (!setup_data(argv, &textures, &data, &window))
 		return (mlx_destroy_window(window.mlx, window.win),
-				mlx_destroy_display(window.mlx), free(window.mlx), 0);
+			mlx_destroy_display(window.mlx), free(window.mlx), 0);
 	all.data = &data;
 	all.textures = &textures;
 	all.window = &window;
@@ -44,9 +44,8 @@ int	main(int argc, char **argv)
 	all.img = malloc(sizeof(t_img));
 	all.img->img = NULL;
 	show_debug_map(&all);
-	mlx_hook(window.win, 2, 1L<<0, input_handling, &all);
+	mlx_hook(window.win, 2, 1L << 0, input_handling, &all);
 	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, &all);
 	mlx_hook(window.win, DestroyNotify, ButtonReleaseMask, quit, &all);
 	mlx_loop(window.mlx);
 }
-

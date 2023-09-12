@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 23:14:10 by ederntanguy       #+#    #+#             */
-/*   Updated: 2022/11/22 17:30:44 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 11:39:48 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*putthebuffer(char *buf, char *line)
 {
 	int		i;
 	int		j;
-	int	k;
+	int		k;
 	char	*newline;
 
 	j = 0;

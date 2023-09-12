@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 09:51:38 by etanguy           #+#    #+#             */
-/*   Updated: 2022/11/11 12:29:07 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 11:41:46 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static int	kvalue(int i)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int	i;
-	int	j;
-	int	k;
-	int	m;
+	int		i;
+	int		j;
+	int		k;
+	int		m;
 	char	*new;
 
 	i = ft_strlen(s1);

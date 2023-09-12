@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 11:31:18 by etanguy           #+#    #+#             */
+/*   Updated: 2023/09/12 11:32:17 by etanguy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 t_coordonatef	rotate_vector(t_coordonatef vector, int angle)
@@ -22,10 +34,10 @@ t_coordonatef	add_vector(t_coordonatef vector1, t_coordonatef vector2)
 	return (new);
 }
 
-int roundFloat(float value)
-{ 
-    int	rounded;
+int	round_float(float value)
+{
+	int	rounded;
 
 	rounded = (int)(value + 0.5);
-    return (rounded);
+	return (rounded);
 }

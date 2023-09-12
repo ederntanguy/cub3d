@@ -6,13 +6,13 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:01:15 by gde-carv          #+#    #+#             */
-/*   Updated: 2023/09/11 14:29:57 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 11:31:04 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int init_rotation_player(char orientation)
+int	init_rotation_player(char orientation)
 {
 	if (orientation == 'N')
 		return (270);
@@ -29,13 +29,13 @@ t_player	make_player(char **map)
 {
 	t_player		player;
 	t_coordonate	chunck_pos;
-	int				chunck;
+	int				chuck;
 
-	chunck = 0;
+	chuck = 0;
 	chunck_pos.y = 0;
 	while (map[chunck_pos.y])
 	{
-		calcule_coordonate_chunck(chunck, &(chunck_pos.x), &(chunck_pos.y), map);
+		calcule_coordonate_chunck(chuck, &(chunck_pos.x), &(chunck_pos.y), map);
 		if (map[chunck_pos.y][chunck_pos.x] == 'N'
 			|| map[chunck_pos.y][chunck_pos.x] == 'S'
 			|| map[chunck_pos.y][chunck_pos.x] == 'E'
@@ -47,7 +47,7 @@ t_player	make_player(char **map)
 				= init_rotation_player(map[chunck_pos.y][chunck_pos.x]);
 			return (player);
 		}
-		chunck++;
+		chuck++;
 	}
 	player.coordonatef.x = 0;
 	player.coordonatef.y = 0;

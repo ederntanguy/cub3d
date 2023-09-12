@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup_textures.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 11:32:53 by etanguy           #+#    #+#             */
+/*   Updated: 2023/09/12 11:33:27 by etanguy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 t_img	make_image(void *mlx, char *filename)
 {
 	t_img	img;
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (filename[i] && filename[i + 1]
@@ -11,22 +23,21 @@ t_img	make_image(void *mlx, char *filename)
 		i++;
 	filename[ft_strlen(filename) - 1] = 0;
 	img.img = mlx_xpm_file_to_image(mlx,
-									filename + 2 + i, &(img.width), &(img.heigth));
+			filename + 2 + i, &(img.width), &(img.heigth));
 	if (!img.img)
 		return (img);
 	img.addr = (unsigned char *)mlx_get_data_addr(img.img, &img.bits_per_pixel,
-												  &img.line_length, &img.endian);
+			&img.line_length, &img.endian);
 	return (img);
 }
 
 int	make_color(char *str)
 {
-	int ret;
-	int tmp;
+	int	ret;
+	int	tmp;
 
 	ret = 0;
 	tmp = 0;
-
 	while (*str)
 	{
 		if (*str == ',' || *str == '\n')
@@ -45,7 +56,7 @@ int	make_color(char *str)
 	return (ret);
 }
 
-void init_to_null_textures(t_textures *textures)
+void	init_to_null_textures(t_textures *textures)
 {
 	textures->south.img = NULL;
 	textures->north.img = NULL;
@@ -57,7 +68,7 @@ void init_to_null_textures(t_textures *textures)
 
 void	texture_setup_loop(char *tmp, int *stop, t_textures *te, t_window *win)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tmp[i] && tmp[i] == ' ')
@@ -86,7 +97,6 @@ int	setup_textures(int fd, t_textures *textures, t_window *window)
 	tmp = get_next_line(fd);
 	while (tmp && stop < 6)
 	{
-
 		texture_setup_loop(tmp, &stop, textures, window);
 		if (check_texture_good_init(textures, window, 0))
 			break ;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 11:29:23 by etanguy           #+#    #+#             */
+/*   Updated: 2023/09/12 11:29:28 by etanguy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	input_handling(int keycode, t_all *all)
@@ -18,7 +30,8 @@ int	input_handling(int keycode, t_all *all)
 			rotate_player(all, -5);
 		else if (keycode == 65363)
 			rotate_player(all, 5);
-		if (keycode == 'w' || keycode == 's' || keycode == 'a' || keycode == 'd' || keycode == 65361 || keycode == 65363)
+		if (keycode == 'w' || keycode == 's' || keycode == 'a'
+			|| keycode == 'd' || keycode == 65361 || keycode == 65363)
 			show_debug_map(all);
 	}
 	return (1);

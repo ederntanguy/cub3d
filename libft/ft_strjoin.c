@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 09:27:20 by etanguy           #+#    #+#             */
-/*   Updated: 2022/11/11 14:37:20 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 11:43:16 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*end;
 
 	i = ft_strlen(s1) + ft_strlen(s2);

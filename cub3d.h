@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/09/11 14:37:39 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 11:38:50 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # define HEIGHT_SCREEN 1080
 # define LEN_CHUNCK 100
 # define LEN_CHUNCK_MAP 0.01
-# define PI 3.14159265359
+# define PI 3.1415926535897
 # define FOV 80.0
 # define DEGRES_PRECISION 0.1
 # define LEN_RAYCAST 500000000.0
-# define PlAYER_SIZE 10
+# define PLAYER_SIZE 10
 # define COLLISION_EXTRA_BORDER 30
 # define PLAYER_SPEED 10
 
@@ -49,8 +49,8 @@ typedef struct s_img {
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
-	int 			width;
-	int 			heigth;
+	int				width;
+	int				heigth;
 }				t_img;
 
 typedef struct s_textures {
@@ -72,7 +72,7 @@ typedef struct s_coordonatef
 {
 	double	x;
 	double	y;
-} t_coordonatef;
+}	t_coordonatef;
 
 typedef struct s_player
 {
@@ -84,24 +84,23 @@ typedef struct s_data
 {
 	char		**map;
 	t_player	player;
-} t_data;
-
+}	t_data;
 
 typedef struct s_raycast_info
 {
 	char			side;
 	double			distance;
 	double			pos;
-} t_raycast_info;
+}	t_raycast_info;
 
 typedef struct s_camera{
-	double pos_x;
-	double pos_y;
-	double dir_x;
-	double dir_y;
-	double plane_y;
-	double plane_x;
-} t_camera;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_y;
+	double	plane_x;
+}	t_camera;
 
 typedef struct s_ray{
 	int		map_x;
@@ -112,10 +111,11 @@ typedef struct s_ray{
 	double	delta_dist_y;
 	double	perp_wall_dist;
 	int		step_x;
-	int 	step_y;
-	int		side; // 0 for X-side, 1 for Y-side
-	double ray_dir_x;
-	double ray_dir_y;} t_ray;
+	int		step_y;
+	int		side;
+	double	ray_dir_x;
+	double	ray_dir_y;
+}	t_ray;
 
 typedef struct s_all
 {
@@ -124,7 +124,7 @@ typedef struct s_all
 	t_textures	*textures;
 	t_img		*img;
 	int			is_show_finish;
-} t_all;
+}	t_all;
 
 typedef struct s_each_wall_pos
 {
@@ -146,7 +146,7 @@ typedef struct s_blocK_wall
 	t_coordonate	first_inpact;
 	t_coordonate	last_inpact;
 
-} t_blocK_wall;
+}	t_blocK_wall;
 
 typedef struct s_impact_info
 {
@@ -154,7 +154,7 @@ typedef struct s_impact_info
 	t_window	window;
 }	t_impact_info;
 
-void				calcule_coordonate_chunck(int chunck, int *x, int *y, char **map);
+void				calcule_coordonate_chunck(int c, int *x, int *y, char **m);
 int					count_nb_chunck(char **map);
 void				show_map(t_img	img, char **map);
 void				my_mlx_pixel_put(t_img *img, int x, int y, int color);
@@ -168,16 +168,15 @@ int					map_validity(char **map);
 //Setup
 
 int					setup_mlx(t_window *window);
-int					setup_textures(int fd, t_textures *textures, t_window *window);
-int					setup_data(char **argv, t_textures *textures, t_data *data, t_window *window);
+int					setup_textures(int fd, t_textures *textures, t_window *win);
+int					setup_data(char **a, t_textures *t, t_data *d, t_window *w);
 
 //Vector Utils
 
-t_coordonatef	    rotate_vector(t_coordonatef vector, int angle);
-t_coordonatef	    add_vector(t_coordonatef vector1, t_coordonatef vector2);
-void	            rotate_player(t_all *all, int rotation);
-int					roundFloat(float value);
-
+t_coordonatef		rotate_vector(t_coordonatef vector, int angle);
+t_coordonatef		add_vector(t_coordonatef vector1, t_coordonatef vector2);
+void				rotate_player(t_all *all, int rotation);
+int					round_float(float value);
 
 //Input
 
@@ -193,14 +192,13 @@ char				**parsing_map(int fd);
 int					empty(char c);
 void				init_ray(t_ray *r, t_camera *camera);
 
-
 //Raycasting
 
 t_raycast_info		*raycasting(t_data data);
 
 //show 3dmap
 
-void 				show_screen(t_raycast_info *ray_info, t_img img, t_textures textures);
+void				show_screen(t_raycast_info *ray_in, t_img i, t_textures t);
 
 // checkpos
 

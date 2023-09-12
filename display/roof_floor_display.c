@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   roof_floor_display.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 11:27:59 by etanguy           #+#    #+#             */
+/*   Updated: 2023/09/12 11:28:11 by etanguy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	show_roof(t_img img, int color)
 {
 	int	x;
-	int y;
+	int	y;
 
 	x = 0;
 	while (x < WITH_SCREEN)
@@ -20,7 +32,7 @@ void	show_roof(t_img img, int color)
 void	show_floor(t_img img, int color)
 {
 	int	x;
-	int y;
+	int	y;
 
 	x = 0;
 	while (x < WITH_SCREEN)
@@ -34,7 +46,7 @@ void	show_floor(t_img img, int color)
 	}
 }
 
-void show_roof_floor(t_img img, t_textures textures)
+void	show_roof_floor(t_img img, t_textures textures)
 {
 	show_floor(img, textures.floor);
 	show_roof(img, textures.roof);

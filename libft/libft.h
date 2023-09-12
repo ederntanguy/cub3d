@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:14:16 by etanguy           #+#    #+#             */
-/*   Updated: 2022/11/13 16:36:06 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 11:40:49 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	*ft_memset(void *s, int c, int n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
-int	ft_strlcat(char *dst, const char *src, int size);
-int	ft_strlcpy(char *dst, const char *src, int size);
-int 	ft_strlen(const char *s);
+int		ft_strlcat(char *dst, const char *src, int size);
+int		ft_strlcpy(char *dst, const char *src, int size);
+int		ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, int n);
 char	*ft_strnstr(const char *big, const char *little, int len);
 char	*ft_strrchr(const char *s, int c);

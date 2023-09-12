@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_validity.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 11:32:31 by etanguy           #+#    #+#             */
+/*   Updated: 2023/09/12 11:32:47 by etanguy          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	invalid_character(char **map)
@@ -26,7 +38,7 @@ int	is_hole(char **map, int x, int y)
 {
 	if (x == 0 || y == 0
 		|| (y != 0 && ((x != 0 && empty(map[y - 1][x - 1]))
-		|| empty(map[y - 1][x]) || (map[y - 1][x + 1]
+			|| empty(map[y - 1][x]) || (map[y - 1][x + 1]
 		&& empty(map[y - 1][x + 1]))))
 		|| ((x != 0 && empty(map[y][x - 1]))
 		&& (map[y][x + 1] && empty(map[y][x + 1])))
@@ -37,9 +49,9 @@ int	is_hole(char **map, int x, int y)
 	return (0);
 }
 
-int hole_in_map(char **map)
+int	hole_in_map(char **map)
 {
-	int x;
+	int	x;
 	int	y;
 
 	y = 0;
@@ -63,7 +75,7 @@ int	missing_player(char **map)
 {
 	int	player;
 	int	x;
-	int y;
+	int	y;
 
 	y = 0;
 	player = 0;

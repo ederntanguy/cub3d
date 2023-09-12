@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 11:19:37 by etanguy           #+#    #+#             */
-/*   Updated: 2022/11/21 15:01:28 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 11:42:11 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*putalltheline2(char *buf, int *res)
 {
-	int	i;
+	int		i;
 	char	*line;
 
 	i = *res;
@@ -36,8 +36,8 @@ char	*putalltheline2(char *buf, int *res)
 
 char	*putalltheline(char *buf, int *res)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*line;
 
 	i = *res;
@@ -63,7 +63,7 @@ char	*putalltheline(char *buf, int *res)
 char	*get_next_line(int fd)
 {
 	static t_all_variable	all;
-	static int			res = 0;
+	static int				res = 0;
 
 	all.line = NULL;
 	if (res > 0)

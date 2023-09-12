@@ -28,7 +28,7 @@ OBJS		=	\
 				$(addprefix $(OBJDIR_SRCS6)/,$(SRCS5:.c=.o))
 
 				
-CC			=	cc
+CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra -O3
 LIBS		=	-Lmlx -lmlx -lXext -lX11 -lm
 RM			=	rm -f
