@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 11:33:38 by etanguy           #+#    #+#             */
-/*   Updated: 2023/09/12 11:34:06 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 12:00:12 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ int	setup_mlx(t_window*window)
 	window->mlx = mlx_init();
 	if (window->mlx == NULL)
 		return (0);
-	window->win = mlx_new_window(window->mlx, 1920, 1080, "Hello world!");
+	window->win = mlx_new_window(window->mlx, WITH_SCREEN, HEIGHT_SCREEN, "Hello world!");
 	return (1);
 }

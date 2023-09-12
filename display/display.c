@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 11:26:28 by etanguy           #+#    #+#             */
-/*   Updated: 2023/09/12 11:27:42 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 11:59:44 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	show_screen(t_raycast_info *ray_info, t_img img, t_textures textures)
 	int	i;
 
 	i = 0;
-	while (i < 1920)
+	while (i < WITH_SCREEN)
 	{
 		make_colum_color(img, i, ray_info[i], textures);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 11:26:10 by etanguy           #+#    #+#             */
-/*   Updated: 2023/09/12 11:26:20 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 12:00:08 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	show_debug_map(t_all *all)
 
 	if (all->img->img)
 		mlx_destroy_image(all->window->mlx, all->img->img);
-	img.img = mlx_new_image(all->window->mlx, 1920, 1080);
+	img.img = mlx_new_image(all->window->mlx, WITH_SCREEN, HEIGHT_SCREEN);
 	img.addr = (unsigned char *)mlx_get_data_addr(img.img,
 			&img.bits_per_pixel, &img.line_length, &img.endian);
 	all->is_show_finish = 0;

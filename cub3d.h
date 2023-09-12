@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 10:29:19 by etanguy           #+#    #+#             */
-/*   Updated: 2023/09/12 11:38:50 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 12:03:13 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,10 @@
 # define WITH_SCREEN 1920
 # define HEIGHT_SCREEN 1080
 # define LEN_CHUNCK 100
-# define LEN_CHUNCK_MAP 0.01
 # define PI 3.1415926535897
 # define FOV 80.0
-# define DEGRES_PRECISION 0.1
-# define LEN_RAYCAST 500000000.0
 # define PLAYER_SIZE 10
 # define COLLISION_EXTRA_BORDER 30
-# define PLAYER_SPEED 10
 
 # include "libft/get_next_line.h"
 # include "libft/libft.h"
