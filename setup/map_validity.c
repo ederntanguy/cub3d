@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 11:32:31 by etanguy           #+#    #+#             */
-/*   Updated: 2023/09/12 11:32:47 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:52:46 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,13 @@ int	missing_player(char **map)
 int	map_validity(char **map)
 {
 	if (!map)
-		return (ft_putstr_fd("Malloc of map failed\n", 2), 0);
+		return (ft_putstr_fd("Error\nMalloc of map failed\n", 2), 0);
 	if (invalid_character(map))
-		return (ft_putstr_fd("The Map countain Invalid characters\n", 2), 0);
+		return (ft_putstr_fd("Error\nThe Map countain Invalid characters\n",
+				2), 0);
 	if (missing_player(map))
-		return (ft_putstr_fd("Invalid number of player\n", 2), 0);
+		return (ft_putstr_fd("Error\nInvalid number of player\n", 2), 0);
 	if (hole_in_map(map))
-		return (ft_putstr_fd("Wall aren't closed\n", 2), 0);
+		return (ft_putstr_fd("Error\nWall aren't closed\n", 2), 0);
 	return (1);
 }

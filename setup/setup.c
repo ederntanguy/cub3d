@@ -6,7 +6,7 @@
 /*   By: etanguy <etanguy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 11:33:38 by etanguy           #+#    #+#             */
-/*   Updated: 2023/09/12 14:29:38 by etanguy          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:53:22 by etanguy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_texture_good_init(t_textures *textures, t_window *window, int where)
 		if (where == 1)
 		{
 			free_img_texture(textures, window);
-			ft_putstr_fd("Don't have all informations\n", 2);
+			ft_putstr_fd("Error\nDon't have all informations\n", 2);
 		}
 		return (0);
 	}
@@ -63,12 +63,13 @@ t_data *data, t_window *window)
 	int	fd;
 
 	if (!check_is_cub_file(argv[1]))
-		return (ft_putstr_fd("The file is not a .cub file\n", 2), 0);
+		return (ft_putstr_fd("Error\nThe file is not a .cub file\n", 2), 0);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (ft_putstr_fd("Failed to open .cub\n", 2), 0);
+		return (ft_putstr_fd("Error\nFailed to open .cub\n", 2), 0);
 	if (setup_textures(fd, textures, window))
-		return (ft_putstr_fd("Failed to load textures or invalid .cub\n", 2),
+		return (ft_putstr_fd("Error\nFailed to load textures or invalid .cub\n",
+				2),
 			0);
 	if (!check_texture_good_init(textures, window, 1))
 		return (0);
